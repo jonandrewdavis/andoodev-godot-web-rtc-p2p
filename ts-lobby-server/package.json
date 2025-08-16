@@ -1,0 +1,21 @@
+{
+	"name": "ts-lobby-server",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"start": "wrangler dev",
+		"cf-typegen": "wrangler types"
+	},
+	"devDependencies": {
+		"@types/ws": "^8.18.1",
+		"typescript": "^5.5.2",
+		"wrangler": "4.26.0"
+	},
+	"dependencies": {
+		"moment": "^2.30.1",
+		"ws": "^8.18.3"
+	},
+	"packageManager": "yarn@4.5.0"
+}

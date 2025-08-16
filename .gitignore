@@ -1,0 +1,8 @@
+# Godot 4+ specific ignores
+godot_client/.godot/
+*.pem
+godot_client/dist/
+.DS_Store
+node_modules
+dist
+typescript_server/dist
