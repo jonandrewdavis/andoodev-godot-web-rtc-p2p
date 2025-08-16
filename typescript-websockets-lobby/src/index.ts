@@ -10,7 +10,7 @@ import { ProtocolHelper } from './handlers/protocol-handler';
 const CONFIG_PORT = 80;
 
 export interface Env {
-	LOBBY_DURABLE_OBJECT: DurableObjectNamespace<LobbyDurableObject>;
+	WEBSOCKET_SERVER: DurableObjectNamespace<WebSocketServer>;
 	SECRET_KEY: string;
 }
 
@@ -33,15 +33,15 @@ export default {
 
 		// This example will refer to the same Durable Object,
 		// since the name "foo" is hardcoded.
-		let id = env.LOBBY_DURABLE_OBJECT.idFromName('foo');
-		let stub = env.LOBBY_DURABLE_OBJECT.get(id);
+		let id = env.WEBSOCKET_SERVER.idFromName('foo');
+		let stub = env.WEBSOCKET_SERVER.get(id);
 
 		return stub.fetch(request);
 	},
 } satisfies ExportedHandler<Env>;
 
 // Durable Object
-export class LobbyDurableObject extends DurableObject {
+export class WebSocketServer extends DurableObject {
 	secretKey: string;
 	currentlyConnectedWebSockets: number;
 	gameServer: GameServerHandler;

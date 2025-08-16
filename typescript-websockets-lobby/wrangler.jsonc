@@ -8,20 +8,20 @@
 	"main": "src/index.ts",
 	"compatibility_flags": ["nodejs_compat"],
 	"compatibility_date": "2025-07-11",
-	"migrations": [
-		{
-			"new_sqlite_classes": ["LobbyDurableObject"],
-			"tag": "v1"
-		}
-	],
 	"durable_objects": {
 		"bindings": [
 			{
-				"class_name": "LobbyDurableObject",
-				"name": "LOBBY_DURABLE_OBJECT"
+				"name": "WEBSOCKET_SERVER",
+				"class_name": "WebSocketServer"
 			}
 		]
 	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": ["WebSocketServer"]
+		}
+	],
 	"observability": {
 		"enabled": false
 	}
