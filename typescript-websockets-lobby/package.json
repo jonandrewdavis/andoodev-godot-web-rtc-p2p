@@ -1,6 +1,6 @@
 {
-	"name": "ts-lobby-server",
-	"version": "0.0.0",
+	"name": "typescript-websockets-lobby",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"deploy": "wrangler deploy",
