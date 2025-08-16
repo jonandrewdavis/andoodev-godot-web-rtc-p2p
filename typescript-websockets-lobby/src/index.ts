@@ -1,4 +1,4 @@
-import WebSocket, { Server, LobbyObject } from 'ws';
+import WebSocket, { Server } from 'ws';
 import * as crypto from 'crypto';
 import { DurableObject } from 'cloudflare:workers';
 import { ClientSocket } from './models/clientSocket';
