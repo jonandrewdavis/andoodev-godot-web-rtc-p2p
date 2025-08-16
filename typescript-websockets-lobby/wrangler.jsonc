@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "typescript-websockets-lobby",
+	"name": "lobby",
 	"main": "src/index.ts",
 	"compatibility_flags": ["nodejs_compat"],
 	"compatibility_date": "2025-07-11",
@@ -12,14 +12,14 @@
 		"bindings": [
 			{
 				"name": "WEBSOCKET_SERVER",
-				"class_name": "typescript-websockets-lobbyWebSocketServer"
+				"class_name": "lobbyWebSocketServer"
 			}
 		]
 	},
 	"migrations": [
 		{
 			"tag": "v1",
-			"new_sqlite_classes": ["WebSocketServer"]
+			"new_sqlite_classes": ["lobbyWebSocketServer"]
 		}
 	],
 	"observability": {

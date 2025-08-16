@@ -1,4 +1,4 @@
-import WebSocket, { Server, WebSocketServer } from 'ws';
+import WebSocket, { Server, lobbyWebSocketServer } from 'ws';
 import * as crypto from 'crypto';
 import { DurableObject } from 'cloudflare:workers';
 import { ClientSocket } from './models/clientSocket';
@@ -10,7 +10,7 @@ import { ProtocolHelper } from './handlers/protocol-handler';
 const CONFIG_PORT = 80;
 
 export interface Env {
-	WEBSOCKET_SERVER: DurableObjectNamespace<WebSocketServer>;
+	WEBSOCKET_SERVER: DurableObjectNamespace<lobbyWebSocketServer>;
 	SECRET_KEY: string;
 }
 
@@ -41,7 +41,7 @@ export default {
 } satisfies ExportedHandler<Env>;
 
 // Durable Object
-export class WebSocketServer extends DurableObject {
+export class lobbyWebSocketServer extends DurableObject {
 	secretKey: string;
 	currentlyConnectedWebSockets: number;
 	gameServer: GameServerHandler;
