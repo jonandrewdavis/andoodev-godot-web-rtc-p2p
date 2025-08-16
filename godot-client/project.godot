@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="JAD WebRTC P2P Example"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/icon="uid://3dxuyvxuw4jg"
+
+[autoload]
+
+LobbySystem="*res://lobby/lobby_system.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
+
+[file_customization]
+
+folder_colors={
+"res://game/": "green",
+"res://lobby/": "pink"
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

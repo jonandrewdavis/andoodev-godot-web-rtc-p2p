@@ -38,10 +38,12 @@ SECRET_KEY="____YOUR_RANDOM_SECRET_KEY____"
 - Name the project: `typescript-websockets-lobby`
 - Open Advanced settings
 - Update root directory path to: `typescript-websockets-lobby/`
-- Open Build Variables
-  - Variable name: `SECRET_KEY`
+
+- Once done build is complete, go to Settings:
+  - Variables and Secrets
+  - Select Secret
+  - Name: `SECRET_KEY`
   - Value: Copy from `.dev.vars` above
-  - Encrypt
 
 TODO: Do we need a build command?
 Note: Do not change the watch path, the root should be where the worker is located.

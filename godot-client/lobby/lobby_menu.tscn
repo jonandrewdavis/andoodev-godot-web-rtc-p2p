@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmfaa3lx7pm24"]
+
+[ext_resource type="Script" uid="uid://bmf6ebbrv8rl0" path="res://lobby/lobby_menu.gd" id="1_216ku"]
+
+[node name="LobbyMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_216ku")
+
+[node name="ButtonConnect" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Connect"
+
+[node name="ButtonDisconnect" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Disconnect"
+
+[node name="InputUsername" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 68.5625
+offset_bottom = 31.0
