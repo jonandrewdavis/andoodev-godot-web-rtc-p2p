@@ -44,6 +44,7 @@ SECRET_KEY="____YOUR_RANDOM_SECRET_KEY____"
   - Encrypt
 
 TODO: Do we need a build command?
+Note: Do not change the watch path, the root should be where the worker is located.
 
 ### Troubleshooting
 
