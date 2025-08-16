@@ -43,9 +43,11 @@ SECRET_KEY="____YOUR_RANDOM_SECRET_KEY____"
   - Value: Copy from `.dev.vars` above
   - Encrypt
 
+TODO: Do we need a build command?
+
 ### Troubleshooting
 
-If you get this when bui;ding:
+If you get this when building:
 
 ```
 Installing project dependencies: yarn
