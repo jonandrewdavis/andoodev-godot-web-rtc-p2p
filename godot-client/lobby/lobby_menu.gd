@@ -29,6 +29,8 @@ func _ready() -> void:
 	%ColumnLobby.hide()
 	
 	# Renders
+	LobbySystem.signal_client_disconnected.connect(func(): _render_connection_light(false))
+	LobbySystem.signal_packet_parsed.connect(func(_packet): _render_connection_light(true))
 	LobbySystem.signal_lobby_list_changed.connect(_render_lobby_list)
 	LobbySystem.signal_lobby_own_info.connect(_render_current_lobby_view)
 	LobbySystem.signal_user_list_changed.connect(_render_user_list)
@@ -48,7 +50,6 @@ func _ready() -> void:
 
 func _render_user_list(users):
 	%UserList.get_children().map(func(element):  element.queue_free())
-	%ConnectionLight.modulate = Color.GREEN if users.size() > 0 else Color.WHITE
 
 	for user in users:
 		if user.has('username'):
@@ -100,6 +101,12 @@ func _render_lobby_chat(chat_user: String, chat_text: String):
 	%LobbyChat.append_text(chat_user + " : " + chat_text)
 	%LobbyChat.newline()
 	pass
+	
+func _render_connection_light(is_user_connected: bool = false):
+	%ConnectionLight.modulate = Color.WHITE
+	if is_user_connected:	
+		await get_tree().create_timer(0.08).timeout
+		%ConnectionLight.modulate = Color.GREEN
 
 func _debug(_message):
 	#print(_message)

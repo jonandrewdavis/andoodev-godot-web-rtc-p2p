@@ -40,8 +40,8 @@ const Action_Answer = "Answer"
 const Action_Candidate = "Candidate"
 #endregion
 
-const WEB_SOCKET_SERVER_URL = 'ws://localhost:8787'
-#const WEB_SOCKET_SERVER_URL = 'wss://typescript-websockets-lobby.jonandrewdavis.workers.dev'
+#const WEB_SOCKET_SERVER_URL = 'ws://localhost:8787'
+const WEB_SOCKET_SERVER_URL = 'wss://typescript-websockets-lobby.jonandrewdavis.workers.dev'
 const WEB_SOCKET_SECRET_KEY = "9317e4d6-83b3-4188-94c4-353a2798d3c1"
 
 const STUN_TURN_SERVER_URL = 'stun:stun.l.google.com:19302'
@@ -211,7 +211,8 @@ func lobbies_get():
 	_ws_send_action(Action_GetLobbies)
 	
 func lobby_send_chat(message: String):
-	_ws_send_action(Action_MessageToLobby, { "message": message })
+	if message.length():
+		_ws_send_action(Action_MessageToLobby, { "message": message })
 
 func generate_random_name():
 	#@Emi's fantastic names 
