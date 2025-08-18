@@ -174,6 +174,10 @@ export class ProtocolHelper {
 					lobby: lobby.get(),
 				});
 				clientSocket.socket.send(message.toString());
+			} else {
+				// send empty if no lobby
+				const message = new Message(EAction.GetOwnLobby, {});
+				clientSocket.socket.send(message.toString());
 			}
 		} catch (err: any) {
 			LoggerHelper.logError(`[ProtocolHelper.sendLobby()] An error had occurred while parsing a message: ${err}`);
@@ -282,7 +286,10 @@ export class ProtocolHelper {
 
 	private static startGameForLobby = (gameServer: GameServerHandler, clientSocket: ClientSocket, message: Message) => {
 		try {
-			const lobbyToStart: Lobby | undefined = gameServer.getLobbyById(message.payload.id);
+			// const lobbyToStart: Lobby | undefined = gameServer.getLobbyById(message.payload.id);
+			// NOTE: Changed to just pull the lobby ID off of the user
+			const lobbyToStart: Lobby | undefined = gameServer.getLobbyById(clientSocket.lobbyId);
+
 			if (!!lobbyToStart) {
 				// if (lobbyToJoin.addPlayer(clientSocket)) {
 				//   const joinLobbySuccessMessage = new Message(EAction.JoinLobby, {

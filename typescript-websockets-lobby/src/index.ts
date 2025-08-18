@@ -14,9 +14,10 @@ export interface Env {
 	SECRET_KEY: string;
 }
 
-// Formatted like a Godot Peer (int)
+// Formatted like a Godot Peer (int), but toString(), or else Godot will parse it as a float, not int.
+// See: https://docs.godotengine.org/en/3.2/classes/class_jsonparseresult.html
 function userId() {
-	return Math.abs(new Int32Array(crypto.randomBytes(4).buffer)[0]);
+	return Math.abs(new Int32Array(crypto.randomBytes(4).buffer)[0]).toString();
 }
 
 // Worker
