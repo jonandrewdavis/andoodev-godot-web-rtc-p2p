@@ -7,7 +7,7 @@ import { GameServerHandler } from './game-server-handler';
 import { LoggerHelper } from '../helpers/logger-helper';
 
 export class ProtocolHelper {
-	public static sendPlayerDisconnectToAll = (gameServer: GameServerHandler, playerDisconnectedId: number) => {
+	public static sendPlayerDisconnectToAll = (gameServer: GameServerHandler, playerDisconnectedId: string) => {
 		const playerDisconnectedMessage: Message = new Message(EAction.PlayerLeft, {
 			webId: playerDisconnectedId,
 		});
@@ -314,7 +314,7 @@ export class ProtocolHelper {
 
 							// Share all new sendNewPeerConnection
 							var player_client: ClientSocket = player;
-							var current_player_id: number = player.id;
+							var current_player_id: string = player.id;
 							for (const next_player of lobbyToStart.players) {
 								if (current_player_id !== next_player.id) {
 									ProtocolHelper.sendNewPeerConnection(player_client, next_player.id);
@@ -338,7 +338,7 @@ export class ProtocolHelper {
 	};
 
 	// NEW:
-	public static sendNewPeerConnection(clientSocket: ClientSocket, next_player_id: number) {
+	public static sendNewPeerConnection(clientSocket: ClientSocket, next_player_id: string) {
 		try {
 			const newPeerConnection: Message = new Message(EAction.NewPeerConnection, {
 				id: next_player_id,
@@ -348,15 +348,22 @@ export class ProtocolHelper {
 			LoggerHelper.logError(`[ProtocolHelper.sendnewPeerConnection()] An error had occurred while parsing a message: ${err}`);
 		}
 	}
+
 	// NOTE: NEW!!! WILL IT WORK?
 	// TODO: Prettier
 	public static sendOfferAnswerOrCandidate(gameServer: GameServerHandler, _clientSocket: ClientSocket, message: Message) {
 		try {
-			const getClientForMessage: ClientSocket = gameServer.connectedClients.find((client) => client.id === message.payload.peer);
+			const getClientForMessage: ClientSocket | undefined = gameServer.connectedClients.find((client) => client.id == message.payload.peer);
+
+			// gameServer.connectedClients.map((client) => {
+			// console.log('client.id', typeof message.payload.peer);
+			// });
 			// NOTE: passes along all of these tob be handled on the client using `message.action`!
 			// case EAction.Offer:
 			// case EAction.Answer:
 			// case EAction.Candidate:
+
+			// TODO: IF FAIL, DO NOT START.
 
 			const newOfferAnswerOrCandidateMessage: Message = new Message(message.action, message.payload);
 			getClientForMessage.socket.send(newOfferAnswerOrCandidateMessage.toString());

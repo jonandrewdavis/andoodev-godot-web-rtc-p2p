@@ -4,7 +4,7 @@ import { LoggerHelper } from '../helpers/logger-helper';
 export class ClientSocket {
 	username: String;
 	socket: WebSocket;
-	id: number;
+	id: String;
 	color: String;
 	lobbyId: String;
 	position: Vector2;
@@ -13,17 +13,17 @@ export class ClientSocket {
 
 	constructor(
 		socket: WebSocket,
-		id: number, // NOTE: UUID ... sadly had to change to crypto random num for Web RTC
-		color: String,
-		lobbyId: String
+		id: String // NOTE: UUID ... sadly had to change to crypto random num for Web RTC
+		// DOUBLE NOTE: JSON back and forth will coerce "number" into float on Godot side, so use a string throughout, converting to int at last minite.
 		// position: Vector2 = new Vector2(0, 0),
 		// direction = new Vector2(0, 0)
 	) {
 		try {
 			this.socket = socket;
 			this.id = id;
-			this.color = '';
+
 			this.lobbyId = '';
+			this.color = '';
 			// this.position = position;
 			// this.direction = direction;
 

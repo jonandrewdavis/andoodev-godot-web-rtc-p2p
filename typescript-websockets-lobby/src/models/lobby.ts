@@ -35,7 +35,7 @@ export class Lobby {
 		}
 	}
 
-	removePlayer(idPlayer: number) {
+	removePlayer(idPlayer: String) {
 		try {
 			let playerToRemove = this.players.find((currentClientSocket) => currentClientSocket.id == idPlayer);
 			if (playerToRemove) {
