@@ -1,28 +1,269 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmfaa3lx7pm24"]
+[gd_scene load_steps=9 format=3 uid="uid://dmfaa3lx7pm24"]
 
 [ext_resource type="Script" uid="uid://bmf6ebbrv8rl0" path="res://lobby/lobby_menu.gd" id="1_216ku"]
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://lobby/theme/MinimalUI.tres" id="1_jmgru"]
+[ext_resource type="StyleBox" uid="uid://dltee5tb5lpnf" path="res://lobby/theme/lobby_panel_container_styleboxflat.tres" id="3_7ixe1"]
+[ext_resource type="Shader" uid="uid://cejq1gisa18xi" path="res://lobby/theme/background.gdshader" id="4_a04cy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26th1"]
+shader = ExtResource("4_a04cy")
+shader_parameter/stretch = 0.8
+shader_parameter/thing1 = 0.30000000447036
+shader_parameter/thing2 = 0.20000000298024
+shader_parameter/thing3 = 1.0000000149012
+shader_parameter/scale = 1.0
+shader_parameter/speed = 20.00000095
+
+[sub_resource type="Gradient" id="Gradient_a04cy"]
+offsets = PackedFloat32Array(0.66504854, 0.7184466)
+colors = PackedColorArray(0.4, 0.4, 0.4, 1, 0.4, 0.4, 0.4, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_26th1"]
+gradient = SubResource("Gradient_a04cy")
+width = 25
+height = 25
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ixe1"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.0706742, 0.07067422, 0.07067417, 0.47058824)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.23529412)
 
 [node name="LobbyMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jmgru")
 script = ExtResource("1_216ku")
 
-[node name="ButtonConnect" type="Button" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="Color" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(6.136671e-06, 0.11346211, 0.37426347, 1)
+
+[node name="Shader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_26th1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Columns" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="ColumnUser" type="VBoxContainer" parent="Margin/Columns"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="UserContainer" type="PanelContainer" parent="Margin/Columns/ColumnUser"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_7ixe1")
+
+[node name="UserLogin" type="VBoxContainer" parent="Margin/Columns/ColumnUser/UserContainer"]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
 text = "Connect"
 
-[node name="ButtonDisconnect" type="Button" parent="."]
+[node name="ConnectionLight" type="TextureRect" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin/H"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 2
+texture = SubResource("GradientTexture2D_26th1")
+
+[node name="InputUsername" type="LineEdit" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Username"
+
+[node name="H2" type="HBoxContainer" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin"]
+layout_mode = 2
+
+[node name="ButtonConnect" type="Button" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin/H2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Connect"
+
+[node name="ButtonDisconnect" type="Button" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin/H2"]
+unique_name_in_owner = true
+layout_mode = 2
 text = "Disconnect"
 
-[node name="InputUsername" type="LineEdit" parent="."]
+[node name="ButtonQuit" type="Button" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 68.5625
-offset_bottom = 31.0
+layout_mode = 2
+text = "Quit"
+
+[node name="UserListContainer" type="PanelContainer" parent="Margin/Columns/ColumnUser"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_7ixe1")
+
+[node name="V" type="VBoxContainer" parent="Margin/Columns/ColumnUser/UserListContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Columns/ColumnUser/UserListContainer/V"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Online Users"
+
+[node name="HSeparator" type="HSeparator" parent="Margin/Columns/ColumnUser/UserListContainer/V"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/Columns/ColumnUser/UserListContainer/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="UserList" type="VBoxContainer" parent="Margin/Columns/ColumnUser/UserListContainer/V/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ColumnLobbyList" type="PanelContainer" parent="Margin/Columns"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_7ixe1")
+
+[node name="V" type="VBoxContainer" parent="Margin/Columns/ColumnLobbyList"]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="Margin/Columns/ColumnLobbyList/V"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Columns/ColumnLobbyList/V/H"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Lobby List"
+
+[node name="ButtonLobbyCreate" type="Button" parent="Margin/Columns/ColumnLobbyList/V/H"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Create Lobby"
+
+[node name="HSeparator" type="HSeparator" parent="Margin/Columns/ColumnLobbyList/V"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/Columns/ColumnLobbyList/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LobbyList" type="VBoxContainer" parent="Margin/Columns/ColumnLobbyList/V/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColumnLobby" type="PanelContainer" parent="Margin/Columns"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("3_7ixe1")
+
+[node name="LobbyVBox" type="VBoxContainer" parent="Margin/Columns/ColumnLobby"]
+layout_mode = 2
+
+[node name="LobbyTop" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="H" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop"]
+layout_mode = 2
+
+[node name="LabelLobbyTitle" type="Label" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/H"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "LOBBY_PLACEHOLDER"
+
+[node name="ButtonLobbyLeave" type="Button" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/H"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Leave Lobby"
+
+[node name="V" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/V"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/V"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Players:"
+
+[node name="LobbyUserList" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/V"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ButtonLobbyStart" type="Button" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Start Game"
+
+[node name="LobbyBottom" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="V" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyBottom"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LobbyChat" type="RichTextLabel" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyBottom/V"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ixe1")
+scroll_following = true
+
+[node name="H" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyBottom"]
+layout_mode = 2
+
+[node name="LobbyChatInput" type="LineEdit" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyBottom/H"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Chat"
+
+[node name="LobbyChatSend" type="Button" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyBottom/H"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Send"

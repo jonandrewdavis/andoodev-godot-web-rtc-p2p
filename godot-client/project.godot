@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="JAD WebRTC P2P Example"
+run/main_scene="uid://dmfaa3lx7pm24"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://3dxuyvxuw4jg"
 
@@ -21,6 +22,15 @@ LobbySystem="*res://lobby/lobby_system.gd"
 [debug]
 
 gdscript/warnings/unused_signal=0
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=2
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/stretch/scale=1.5
 
 [file_customization]
 
