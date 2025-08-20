@@ -1,0 +1,4 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://bcs1v6w2ci3im"]
+
+[resource]
+bus/0/send = &"SFX"

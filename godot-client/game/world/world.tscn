@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwjy06f5bfif6"]
+
+[ext_resource type="Script" uid="uid://bdf0fok3q1l6c" path="res://game/world/world.gd" id="1_gy7s6"]
+[ext_resource type="Environment" uid="uid://ccvbsj3m2xgxj" path="res://game/world/world_environment_rust.tres" id="2_lw343"]
+[ext_resource type="Texture2D" uid="uid://d3lk7sn6r5krt" path="res://game/assets/environment/rust/Snow008A_1K-JPG_Color.jpg" id="3_otu64"]
+[ext_resource type="PackedScene" uid="uid://d1phoa8tdhobe" path="res://game/world/world_boundaries.tscn" id="4_wr52l"]
+[ext_resource type="PackedScene" uid="uid://bkwpea4jhu861" path="res://game/assets/environment/rust/rust_clean_textured.tscn" id="5_menk3"]
+[ext_resource type="PackedScene" uid="uid://d27xhk2ygjsbr" path="res://game/Weapons/Misc/Scenes/HitableBoxScene.tscn" id="6_6x206"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_we8ss"]
+albedo_texture = ExtResource("3_otu64")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_sltsk"]
+material = SubResource("StandardMaterial3D_we8ss")
+size = Vector2(2000, 2000)
+orientation = 1
+
+[node name="World" type="Node3D" node_paths=PackedStringArray("player_container")]
+script = ExtResource("1_gy7s6")
+player_container = NodePath("PlayerContainer")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_lw343")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.38245693, -0.7559008, -0.5313574, -0.08658036, -0.6018674, 0.7938889, -0.919908, -0.25762329, -0.29563454, 0, 3.7201366, 8.137672)
+light_energy = 0.4
+shadow_enabled = true
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.2
+directional_shadow_max_distance = 80.0
+sky_mode = 1
+
+[node name="PlayerContainer" type="Node3D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://bwggrf7sbmkcv")
+spawn_path = NodePath("../PlayerContainer")
+
+[node name="WorldFloorMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.506607, -1.913002, 0)
+mesh = SubResource("QuadMesh_sltsk")
+
+[node name="WorldBoundaries" parent="." instance=ExtResource("4_wr52l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.506607, 0, 0)
+
+[node name="rust_map_textured" parent="." instance=ExtResource("5_menk3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.506607, 0, 0)
+
+[node name="rust_map_decorations" type="Node3D" parent="."]
+
+[node name="HitableBox" parent="rust_map_decorations" instance=ExtResource("6_6x206")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.646051, -0.6957283, -38.20824)
+
+[node name="HitableBox7" parent="rust_map_decorations" instance=ExtResource("6_6x206")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.265163, -0.6957283, -3.7719717)
+
+[node name="HitableBox8" parent="rust_map_decorations" instance=ExtResource("6_6x206")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.265163, -0.6957283, -1.8018527)
+
+[node name="HitableBox6" parent="rust_map_decorations" instance=ExtResource("6_6x206")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.807888, -0.6957283, -24.054644)
+
+[node name="HitableBox2" parent="rust_map_decorations" instance=ExtResource("6_6x206")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.484749, 1.3109872, -24.89788)
+
+[node name="HitableBox3" parent="rust_map_decorations" instance=ExtResource("6_6x206")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.163538, 1.3109872, -23.754036)
+
+[node name="HitableBox4" parent="rust_map_decorations" instance=ExtResource("6_6x206")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.366747, 1.3109872, -22.232935)
+
+[node name="HitableBox5" parent="rust_map_decorations" instance=ExtResource("6_6x206")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.965487, 1.273165, -22.446089)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.46474206, 0.19254069, -0.8642586, -0.035466246, 0.9793359, 0.19910632, 0.8847355, -0.061881077, 0.46196726, -19.285967, 13.049698, 7.3150396)
+fov = 80.0

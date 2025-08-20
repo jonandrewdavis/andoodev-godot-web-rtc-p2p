@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bgvgepafdad0q"
+path="res://.godot/imported/9mm Pistol Chamber Check Full.mp3-4bf8cf1ca0334c7462a63479ceda7dcc.mp3str"
+
+[deps]
+
+source_file="res://game/assets/sound/9mm Pistol Chamber Check Full.mp3"
+dest_files=["res://.godot/imported/9mm Pistol Chamber Check Full.mp3-4bf8cf1ca0334c7462a63479ceda7dcc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

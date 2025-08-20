@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="WeaponResourceNew" load_steps=6 format=3 uid="uid://j42d6dl8qkaj"]
+
+[ext_resource type="AudioStream" uid="uid://bhigie4rovst1" path="res://game/assets/sound/9mm Pistol Rack Full.mp3" id="1_gd0kh"]
+[ext_resource type="Script" uid="uid://bnhfyt5sl8jcd" path="res://game/Weapons/Scripts/WeaponResourcesScript.gd" id="2_gd0kh"]
+[ext_resource type="AudioStream" uid="uid://bgvgepafdad0q" path="res://game/assets/sound/9mm Pistol Chamber Check Full.mp3" id="3_rglq3"]
+[ext_resource type="AudioStream" uid="uid://cosnwrc55jfiu" path="res://game/assets/sound/556 Single Isolated MP3.mp3" id="4_sdsuq"]
+
+[sub_resource type="Curve" id="Curve_eo1mu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.097493, 1), 0.0, 0.0, 0, 0, Vector2(0.643454, 0.0704225), 0.0, 0.0, 0, 0, Vector2(1, 0.0492958), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[resource]
+script = ExtResource("2_gd0kh")
+weaponName = "Pistol"
+weaponId = 1
+type = 1
+animBlendTime = 0.2
+equipAnimName = "EquipAnimPistol"
+unequipAnimName = "UnequipAnimPistol"
+shootAnimName = "ShootAnimPistol"
+reloadAnimName = "ReloadAnimPistol"
+equipSound = ExtResource("1_gd0kh")
+shootSound = ExtResource("4_sdsuq")
+reloadSound = ExtResource("3_rglq3")
+totalAmmoInMag = 12
+totalAmmoInMagRef = 12
+ammoType = "LightAmmo"
+equipTime = 0.2
+unequipTime = 0.2
+canAutoShoot = true
+nbProjShotsAtSameTime = 1
+nbProjShots = 1
+minSpread = -0.01
+maxSpread = 0.01
+maxRange = 200.0
+damagePerProj = 30.0
+damageDropoff = SubResource("Curve_eo1mu")
+headshotDamageMult = 2.0
+timeBetweenShots = 0.19
+reloadTime = 0.92
+baseRotSpeed = 7.0
+targetRotSpeed = 8.0
+recoilVal = Vector3(0.04, 0.012, 0)
+position = Array[Vector3]([Vector3(0.20047, -0.153444, -0.150842), Vector3(0, 3.142, 0)])
+tiltRotSpeed = 8.0
+tiltRotAmount = 0.3
+minSwayVal = Vector2(-20, -20)
+maxSwayVal = Vector2(20, 20)
+swaySpeedPos = 0.1
+swaySpeedRot = 0.1
+swayAmountPos = 0.2
+swayAmountRot = 28.0
+bobFreq = 0.008
+bobAmount = 0.018
+bobSpeed = 10.0
+onIdleBobFreqDivider = 2.0

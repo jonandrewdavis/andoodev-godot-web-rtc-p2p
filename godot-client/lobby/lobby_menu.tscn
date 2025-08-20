@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmfaa3lx7pm24"]
+[gd_scene load_steps=11 format=3 uid="uid://dmfaa3lx7pm24"]
 
 [ext_resource type="Script" uid="uid://bmf6ebbrv8rl0" path="res://lobby/lobby_menu.gd" id="1_216ku"]
 [ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://lobby/theme/MinimalUI.tres" id="1_jmgru"]
 [ext_resource type="StyleBox" uid="uid://dltee5tb5lpnf" path="res://lobby/theme/lobby_panel_container_styleboxflat.tres" id="3_7ixe1"]
 [ext_resource type="Shader" uid="uid://cejq1gisa18xi" path="res://lobby/theme/background.gdshader" id="4_a04cy"]
+[ext_resource type="FontFile" uid="uid://bnudr3myap7vs" path="res://lobby/theme/Strait-Regular.ttf" id="5_26th1"]
+[ext_resource type="Texture2D" uid="uid://cc5ro6riiqfsg" path="res://game/assets/environment/rust_preview.jpg" id="5_j0pei"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_26th1"]
 shader = ExtResource("4_a04cy")
@@ -215,21 +217,60 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Leave Lobby"
 
-[node name="V" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop"]
+[node name="VBoxMap" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HSeparator" type="HSeparator" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/V"]
+[node name="HSeparator" type="HSeparator" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/V"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 21
 text = "Players:"
 
-[node name="LobbyUserList" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/V"]
+[node name="LobbyUserList" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="V" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V"]
+layout_mode = 2
+
+[node name="LabelGame" type="Label" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Select Game:"
+
+[node name="OptionButton" type="OptionButton" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 1
+popup/item_0/text = "3D FPS Demo"
+popup/item_0/id = 0
+
+[node name="TextureRect" type="TextureRect" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("5_j0pei")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="ButtonLobbyStart" type="Button" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop"]
 unique_name_in_owner = true
@@ -251,6 +292,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("5_26th1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_7ixe1")
 scroll_following = true
 

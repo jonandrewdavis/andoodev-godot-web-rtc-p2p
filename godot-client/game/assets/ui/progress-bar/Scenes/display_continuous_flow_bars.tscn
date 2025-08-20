@@ -1,0 +1,1803 @@
+[gd_scene load_steps=31 format=3 uid="uid://jwwk0sui7nnu"]
+
+[ext_resource type="Script" uid="uid://5ljin8quq4rk" path="res://game/assets/ui/progress-bar/Scripts/demo_controller.gd" id="1_1ehgi"]
+[ext_resource type="Shader" path="res://progress_bar.gdshader" id="2_t5rxc"]
+[ext_resource type="Script" uid="uid://wbnqar1hyhh8" path="res://game/assets/ui/progress-bar/Scripts/progress_bar.gd" id="3_lee5f"]
+[ext_resource type="Texture2D" uid="uid://b7dvxoa2k5m4k" path="res://game/assets/ui/progress-bar/Textures/frame_00.png" id="4_xxiqd"]
+[ext_resource type="Texture2D" uid="uid://bmvgmsts4daph" path="res://game/assets/ui/progress-bar/Textures/frame_02.png" id="5_eo0ld"]
+[ext_resource type="Texture2D" uid="uid://c4o1rs10qy620" path="res://game/assets/ui/progress-bar/Textures/frame_04.png" id="6_cidhi"]
+[ext_resource type="Texture2D" uid="uid://cna1fpmnqcu43" path="res://game/assets/ui/progress-bar/Textures/frame_05.png" id="7_po1m0"]
+[ext_resource type="Texture2D" uid="uid://5jcy1xhxtktm" path="res://game/assets/ui/progress-bar/Textures/frame_01.png" id="8_ox1wu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tlfx0"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 2
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.5
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = 0.0
+shader_parameter/scale = 0.0
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vl8dq"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 4
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.5
+shader_parameter/fluid_noise_scale = 12.0
+shader_parameter/gas_mode = true
+shader_parameter/gas_intensity = 3.0
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.5
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = 0.0
+shader_parameter/scale = 0.0
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ar5e2"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 3
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.1
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 1.5
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = 0.0
+shader_parameter/scale = 0.0
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r4oal"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 0
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = false
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.1
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 1.5
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = 0.0
+shader_parameter/scale = 0.0
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmd01"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 2
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = false
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = true
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.0
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = 0.0
+shader_parameter/scale = 0.0
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yy2pn"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 2
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.05
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.6
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = 0.045
+shader_parameter/scale = -0.045
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hy5yu"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 4
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.5
+shader_parameter/fluid_noise_scale = 12.0
+shader_parameter/gas_mode = true
+shader_parameter/gas_intensity = 3.0
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.05
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.6
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = -0.045
+shader_parameter/scale = -0.045
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cpk81"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 3
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.75
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.05
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 1.5
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = 0.045
+shader_parameter/scale = -0.045
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5fri"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 0
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = false
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.05
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 1.5
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = -0.045
+shader_parameter/scale = -0.045
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8jgbh"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 2
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = false
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = true
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.05
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 1.5
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = 0.045
+shader_parameter/scale = -0.045
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kw1ml"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 2
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = true
+shader_parameter/frame_texture = ExtResource("4_xxiqd")
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.6
+shader_parameter/outer_border_size = 0.0
+shader_parameter/slant_amount = -0.045
+shader_parameter/scale = -0.045
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26fo4"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 4
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = true
+shader_parameter/frame_texture = ExtResource("5_eo0ld")
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.5
+shader_parameter/fluid_noise_scale = 12.0
+shader_parameter/gas_mode = true
+shader_parameter/gas_intensity = 3.0
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.6
+shader_parameter/outer_border_size = 0.0
+shader_parameter/slant_amount = 2.375e-08
+shader_parameter/scale = -0.3
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lp6om"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 3
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = true
+shader_parameter/frame_texture = ExtResource("6_cidhi")
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.0
+shader_parameter/outer_border_size = 0.0
+shader_parameter/slant_amount = 0.0
+shader_parameter/scale = -0.045
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lb3px"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 0
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = true
+shader_parameter/frame_texture = ExtResource("7_po1m0")
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = false
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.0
+shader_parameter/outer_border_size = 0.0
+shader_parameter/slant_amount = 0.0
+shader_parameter/scale = 0.0
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h7f13"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 2
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = true
+shader_parameter/frame_texture = ExtResource("8_ox1wu")
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = false
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = true
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.6
+shader_parameter/outer_border_size = 0.0
+shader_parameter/slant_amount = 0.0
+shader_parameter/scale = -0.09
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hy5yu"]
+load_path = "res://.godot/imported/frame_00.png-4ec2b6f78074489b3f63f35e2bc11468.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8t548"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 2
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = true
+shader_parameter/frame_texture = SubResource("CompressedTexture2D_hy5yu")
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 1
+shader_parameter/effect_strength = 0.9
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.6
+shader_parameter/outer_border_size = 0.0
+shader_parameter/slant_amount = -0.045
+shader_parameter/scale = -0.045
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jlx75"]
+load_path = "res://.godot/imported/frame_02.png-878946380c53c037c756f23ac57b8f8e.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h084n"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 4
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = true
+shader_parameter/frame_texture = SubResource("CompressedTexture2D_jlx75")
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.5
+shader_parameter/fluid_noise_scale = 12.0
+shader_parameter/gas_mode = true
+shader_parameter/gas_intensity = 3.0
+shader_parameter/effect_mode = 2
+shader_parameter/effect_strength = 0.6
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 0.15
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.6
+shader_parameter/outer_border_size = 0.0
+shader_parameter/slant_amount = 2.375e-08
+shader_parameter/scale = -0.3
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pfg3o"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 3
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 15
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 3
+shader_parameter/effect_strength = 0.45
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.05
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.6
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = -0.045
+shader_parameter/scale = -0.045
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ovqkv"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 0
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 15
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 5
+shader_parameter/effect_strength = 1.0
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = false
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.5
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = 0.045
+shader_parameter/scale = -0.045
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7v5cq"]
+shader = ExtResource("2_t5rxc")
+shader_parameter/bar_mode = 2
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 25
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 4
+shader_parameter/effect_strength = 3.0
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = false
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = true
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 0.5
+shader_parameter/outer_border_size = 0.2
+shader_parameter/slant_amount = -0.045
+shader_parameter/scale = -0.045
+shader_parameter/slant_clip_margin = 0.0
+
+[node name="Display_Discrete_Flow_Bars" type="Node"]
+
+[node name="Controller" type="Node" parent="."]
+script = ExtResource("1_1ehgi")
+decrease_amount = 3.0
+increase_amount = 3.0
+decrease_interval = 0.05
+increase_interval = 0.05
+
+[node name="bar_00" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_tlfx0")
+offset_left = 256.0
+offset_top = 200.0
+offset_right = 512.0
+offset_bottom = 264.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_00"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_00/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 56.0
+text = "Heath bar mode + vertical dark gradient"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_01" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_vl8dq")
+offset_left = 256.0
+offset_top = 376.0
+offset_right = 512.0
+offset_bottom = 440.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_01"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_01/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 56.0
+text = "Fluid mode + vertical dark gradient "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_02" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_ar5e2")
+offset_left = 256.0
+offset_top = 536.0
+offset_right = 512.0
+offset_bottom = 600.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_02"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_02/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 56.0
+text = "Rainbow mode + vertical dark gradient"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_03" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_r4oal")
+offset_left = 256.0
+offset_top = 704.0
+offset_right = 512.0
+offset_bottom = 768.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_03"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_03/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 56.0
+text = "Solid bar mode "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_04" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_fmd01")
+offset_left = 256.0
+offset_top = 872.0
+offset_right = 512.0
+offset_bottom = 936.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_04"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_04/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 56.0
+text = "Health bar mode + Horizontal gradient"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_05" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_yy2pn")
+offset_left = 576.0
+offset_top = 200.0
+offset_right = 832.0
+offset_bottom = 264.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Flash"
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_05"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_05/Panel"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Heath bar mode + vertical dark gradient + flash effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_06" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_hy5yu")
+offset_left = 576.0
+offset_top = 376.0
+offset_right = 832.0
+offset_bottom = 440.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Drain"
+effect_duration = 2.0
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_06"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_06/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 56.0
+text = "Fluid mode + vertical dark gradient + drain effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_07" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_cpk81")
+offset_left = 576.0
+offset_top = 536.0
+offset_right = 832.0
+offset_bottom = 600.0
+script = ExtResource("3_lee5f")
+effect_type = "Drain Solid"
+effect_duration = 2.0
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_07"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_07/Panel"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 15
+text = "Rainbow mode + vertical dark gradient + drain solid effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_08" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_m5fri")
+offset_left = 576.0
+offset_top = 704.0
+offset_right = 832.0
+offset_bottom = 768.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Drain"
+effect_duration = 2.0
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_08"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_08/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 56.0
+text = "Solid bar mode + drain effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_09" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_8jgbh")
+offset_left = 576.0
+offset_top = 872.0
+offset_right = 832.0
+offset_bottom = 936.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Flash"
+effect_speed = 3.0
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_09"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_09/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 56.0
+text = "Health bar mode + Horizontal gradient + flash effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_10" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_kw1ml")
+offset_left = 896.0
+offset_top = 200.0
+offset_right = 1152.0
+offset_bottom = 264.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Flash"
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_10"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_10/Panel"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Heath bar mode + vertical dark gradient + flash decrease + custom frame"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_11" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_26fo4")
+offset_left = 896.0
+offset_top = 376.0
+offset_right = 1152.0
+offset_bottom = 440.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Drain"
+effect_duration = 2.0
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_11"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_11/Panel"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Fluid mode + vertical dark gradient + custom frame + drain effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_12" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_lp6om")
+offset_left = 896.0
+offset_top = 536.0
+offset_right = 1152.0
+offset_bottom = 600.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Drain Solid"
+effect_duration = 2.0
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_12"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_12/Panel"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Rainbow mode + vertical dark gradient + custom frame + drain solid effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_13" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_lb3px")
+offset_left = 896.0
+offset_top = 704.0
+offset_right = 1152.0
+offset_bottom = 768.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Drain"
+effect_duration = 2.0
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_13"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_13/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 56.0
+text = "Solid bar mode + custom frame + drain effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_14" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_h7f13")
+offset_left = 896.0
+offset_top = 872.0
+offset_right = 1152.0
+offset_bottom = 936.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Flash"
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_14"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_14/Panel"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Health bar mode + Horizontal gradient + custom frame + flash effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_15" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_8t548")
+offset_left = 1208.0
+offset_top = 200.0
+offset_right = 1464.0
+offset_bottom = 264.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Flash"
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_15"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_15/Panel"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Heath bar mode + vertical dark gradient + flash decrease + custom frame + wave effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_16" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_h084n")
+offset_left = 1208.0
+offset_top = 376.0
+offset_right = 1464.0
+offset_bottom = 440.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Drain"
+effect_duration = 2.0
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_16"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_16/Panel"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Fluid mode + vertical dark gradient + custom frame + drain effect + bubbles effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_17" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_pfg3o")
+offset_left = 1208.0
+offset_top = 536.0
+offset_right = 1464.0
+offset_bottom = 600.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Drain Solid"
+effect_duration = 2.0
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_17"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_17/Panel"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Rainbow mode + vertical dark gradient + glitch  effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_18" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_ovqkv")
+offset_left = 1208.0
+offset_top = 704.0
+offset_right = 1464.0
+offset_bottom = 768.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Drain"
+effect_duration = 2.0
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_18"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_18/Panel"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 15
+text = "Solid bar mode  + pixel static effect + drain effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar_19" type="ColorRect" parent="Controller"]
+material = SubResource("ShaderMaterial_7v5cq")
+offset_left = 1208.0
+offset_top = 872.0
+offset_right = 1464.0
+offset_bottom = 936.0
+script = ExtResource("3_lee5f")
+fill_speed = 0.3
+effect_type = "Flash"
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="ColorRect" parent="Controller/bar_19"]
+layout_mode = 0
+offset_top = -72.0
+offset_right = 256.0
+offset_bottom = -8.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="Description" type="RichTextLabel" parent="Controller/bar_19/Panel"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Health bar mode + Horizontal gradient + static effect + flash effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FlowDesc" type="ColorRect" parent="."]
+offset_left = 752.0
+offset_top = 24.0
+offset_right = 976.0
+offset_bottom = 104.0
+color = Color(1, 0, 0.219608, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="FlowDesc"]
+layout_mode = 0
+offset_right = 224.0
+offset_bottom = 80.0
+theme_override_font_sizes/normal_font_size = 18
+text = "Segments per bar: 1
+Flow: Continuous
+Fill type: Pour&Step"
+horizontal_alignment = 1
+vertical_alignment = 1

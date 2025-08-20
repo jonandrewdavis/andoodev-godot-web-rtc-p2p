@@ -1,0 +1,551 @@
+[gd_scene load_steps=17 format=3 uid="uid://bodmr74jwgi5g"]
+
+[ext_resource type="Script" uid="uid://dbkd33tkoa5no" path="res://game/PlayerCharacter/UI/player_ui.gd" id="1_721h2"]
+[ext_resource type="Script" uid="uid://wbnqar1hyhh8" path="res://game/assets/ui/progress-bar/Scripts/progress_bar.gd" id="2_2npwm"]
+[ext_resource type="Shader" uid="uid://qeyffruxo18f" path="res://game/assets/ui/progress-bar/progress_bar.gdshader" id="2_k8gwt"]
+[ext_resource type="Texture2D" uid="uid://dgawa7qhyucjl" path="res://game/assets/ui/keys/1.png" id="3_8j042"]
+[ext_resource type="Texture2D" uid="uid://lx43i3uhpig5" path="res://game/assets/ui/keys/2.png" id="4_3sa24"]
+[ext_resource type="Texture2D" uid="uid://bjgabt4w188s2" path="res://game/assets/ui/keys/TAB.png" id="4_587s8"]
+[ext_resource type="Texture2D" uid="uid://ckj546ywa71nr" path="res://game/assets/ui/keys/C.png" id="5_gyopi"]
+[ext_resource type="Texture2D" uid="uid://bs056of5ahnqb" path="res://game/assets/ui/keys/SHIFTBIGGER.png" id="6_1d6ur"]
+[ext_resource type="AudioStream" uid="uid://jo7livkwx30u" path="res://game/assets/sound/hitmarker.mp3" id="9_3sa24"]
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://lobby/theme/MinimalUI.tres" id="9_xyb3v"]
+[ext_resource type="AudioStream" uid="uid://dfrym40wh1pg2" path="res://game/assets/sound/headshot_ping.mp3" id="10_fuqax"]
+
+[sub_resource type="Gradient" id="Gradient_yswgc"]
+offsets = PackedFloat32Array(0.5034188, 0.9008547)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0.23137257, 0.20784314, 0.34901962)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_721h2"]
+gradient = SubResource("Gradient_yswgc")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_587s8"]
+shader = ExtResource("2_k8gwt")
+shader_parameter/bar_mode = 2
+shader_parameter/fill_mode = 2
+shader_parameter/segment_count = 12
+shader_parameter/discrete_fill_amount = 12
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 3
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.5000000237500001
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.5000000237500001
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 15
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5000000679901202
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = true
+shader_parameter/H_gradient_strength = 0.410000019475
+shader_parameter/segment_gap = 0.050000002375
+shader_parameter/universal_border_size = 0.050000002375
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 1.0
+shader_parameter/outer_border_size = 1.1000000000058208
+shader_parameter/slant_amount = -0.02499997743749998
+shader_parameter/scale = -0.02799995382999998
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="Gradient" id="Gradient_xyb3v"]
+offsets = PackedFloat32Array(0.5248619, 0.534846)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fuqax"]
+gradient = SubResource("Gradient_xyb3v")
+width = 6
+height = 6
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="PlayerUI" type="CanvasLayer"]
+script = ExtResource("1_721h2")
+
+[node name="TopLevelControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_xyb3v")
+
+[node name="HurtTexture" type="TextureRect" parent="TopLevelControl"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_721h2")
+
+[node name="TopLeft" type="MarginContainer" parent="TopLevelControl"]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 196.0
+offset_bottom = 245.0
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopLevelControl/TopLeft"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopLevelControl/TopLeft/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="TopLevelControl/TopLeft/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_587s8")
+
+[node name="Label" type="Label" parent="TopLevelControl/TopLeft/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Menu"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TopLevelControl/TopLeft/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="TopLevelControl/TopLeft/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("3_8j042")
+
+[node name="Label" type="Label" parent="TopLevelControl/TopLeft/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Prev Weapon"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TopLevelControl/TopLeft/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="TopLevelControl/TopLeft/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("4_3sa24")
+
+[node name="Label" type="Label" parent="TopLevelControl/TopLeft/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Next Weapon"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="TopLevelControl/TopLeft/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="TopLevelControl/TopLeft/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+texture = ExtResource("5_gyopi")
+
+[node name="Label" type="Label" parent="TopLevelControl/TopLeft/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Crouch"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="TopLevelControl/TopLeft/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="TopLevelControl/TopLeft/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+texture = ExtResource("6_1d6ur")
+
+[node name="Label" type="Label" parent="TopLevelControl/TopLeft/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Sprint"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="TopLevelControl/TopLeft/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="TopLevelControl/TopLeft/VBoxContainer/HBoxContainer7"]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_1d6ur")
+
+[node name="Label" type="Label" parent="TopLevelControl/TopLeft/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Left Click: Shoot
+Right Click: Aim
+Scroll: Next Weapon"
+
+[node name="TopRight" type="MarginContainer" parent="TopLevelControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -156.0
+offset_bottom = 205.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopLevelControl/TopRight"]
+layout_mode = 2
+
+[node name="LabelFPSCounter" type="Label" parent="TopLevelControl/TopRight/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.09019608, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5411765)
+theme_override_font_sizes/font_size = 18
+text = "FPS: 111"
+horizontal_alignment = 2
+
+[node name="BottomLeft" type="MarginContainer" parent="TopLevelControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -90.0
+offset_right = 400.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Vbox" type="VBoxContainer" parent="TopLevelControl/BottomLeft"]
+layout_mode = 2
+
+[node name="Health" type="ColorRect" parent="TopLevelControl/BottomLeft/Vbox"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_587s8")
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+script = ExtResource("2_2npwm")
+effect_type = "Flash"
+
+[node name="HealthBar" type="ProgressBar" parent="TopLevelControl/BottomLeft/Vbox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="BottomRight" type="MarginContainer" parent="TopLevelControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -460.0
+offset_top = -134.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="TopLevelControl/BottomRight"]
+layout_mode = 2
+
+[node name="LabelWeaponName" type="Label" parent="TopLevelControl/BottomRight/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 2
+
+[node name="HB" type="HBoxContainer" parent="TopLevelControl/BottomRight/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="LabelAmmo" type="Label" parent="TopLevelControl/BottomRight/VBox/HB"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "99"
+
+[node name="Label" type="Label" parent="TopLevelControl/BottomRight/VBox/HB"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = " / "
+
+[node name="LabelAmmoRemaining" type="Label" parent="TopLevelControl/BottomRight/VBox/HB"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "99"
+
+[node name="HurtTimer" type="Timer" parent="TopLevelControl"]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="HitTimer" type="Timer" parent="TopLevelControl"]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+
+[node name="ScoreTimer" type="Timer" parent="TopLevelControl"]
+unique_name_in_owner = true
+wait_time = 2.0
+autostart = true
+
+[node name="HitMarker" type="Control" parent="TopLevelControl"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Line2D" type="Line2D" parent="TopLevelControl/HitMarker"]
+points = PackedVector2Array(6, 6, 15, 15)
+width = 1.4
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 0.0
+round_precision = 20
+antialiased = true
+
+[node name="Line2D2" type="Line2D" parent="TopLevelControl/HitMarker"]
+points = PackedVector2Array(-6, -6, -15, -15)
+width = 1.4
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 0.0
+round_precision = 20
+antialiased = true
+
+[node name="Line2D3" type="Line2D" parent="TopLevelControl/HitMarker"]
+points = PackedVector2Array(6, -6, 15, -15)
+width = 1.4
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 0.0
+round_precision = 20
+antialiased = true
+
+[node name="Line2D4" type="Line2D" parent="TopLevelControl/HitMarker"]
+points = PackedVector2Array(-6, 6, -15, 15)
+width = 1.4
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 0.0
+round_precision = 20
+antialiased = true
+
+[node name="HitHeadSound" type="AudioStreamPlayer" parent="TopLevelControl"]
+unique_name_in_owner = true
+stream = ExtResource("10_fuqax")
+volume_db = 2.0
+
+[node name="HitSound" type="AudioStreamPlayer" parent="TopLevelControl"]
+unique_name_in_owner = true
+stream = ExtResource("9_3sa24")
+
+[node name="CenterContainer" type="CenterContainer" parent="TopLevelControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="TopLevelControl/CenterContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("GradientTexture2D_fuqax")
+
+[node name="Line2D" type="Line2D" parent="TopLevelControl/CenterContainer"]
+visible = false
+points = PackedVector2Array(0.1, 0, -0.1, 0, 0, 0.1, 0, -0.1)
+width = 4.0
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Menu" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -164.5
+offset_right = 280.0
+offset_bottom = 166.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_xyb3v")
+
+[node name="InGameMenuMargin" type="MarginContainer" parent="Menu"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/InGameMenuMargin"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Menu/InGameMenuMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ColorRect" type="TextureRect" parent="Menu/InGameMenuMargin/VBoxContainer/HBoxContainer4"]
+texture_filter = 3
+layout_mode = 2
+texture = ExtResource("4_587s8")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "Close"
+
+[node name="Label3" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Score"
+
+[node name="Scoreboard" type="VBoxContainer" parent="Menu/InGameMenuMargin/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Settings" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="GridContainer" type="GridContainer" parent="Menu/InGameMenuMargin/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="SensLabel" type="HBoxContainer" parent="Menu/InGameMenuMargin/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer/GridContainer/SensLabel"]
+layout_mode = 2
+text = "Look Sensitivity"
+
+[node name="SenVal" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer/GridContainer/SensLabel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SenSlider" type="HSlider" parent="Menu/InGameMenuMargin/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.01000000000931322
+max_value = 1.0
+step = 0.01000000000931322
+value = 0.01000000000931322
+tick_count = 10
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="AimSensLabel" type="HBoxContainer" parent="Menu/InGameMenuMargin/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer/GridContainer/AimSensLabel"]
+layout_mode = 2
+text = "Aim Slow Intensity"
+
+[node name="AimVal" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer/GridContainer/AimSensLabel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AimSlider" type="HSlider" parent="Menu/InGameMenuMargin/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.01000000000931322
+max_value = 1.0
+step = 0.01000000000931322
+value = 0.01000000000931322
+tick_count = 10
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="SoundLabel" type="HBoxContainer" parent="Menu/InGameMenuMargin/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer/GridContainer/SoundLabel"]
+layout_mode = 2
+text = "Volume"
+
+[node name="SoundSlider" type="HSlider" parent="Menu/InGameMenuMargin/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01000000000931322
+value = 0.01000000000931322
+tick_count = 10
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Menu/InGameMenuMargin/VBoxContainer"]
+layout_mode = 2
+
+[node name="Respawn" type="Button" parent="Menu/InGameMenuMargin/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Respawn
+"
+
+[node name="Disconnect" type="Button" parent="Menu/InGameMenuMargin/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Disconnect
+"
+
+[node name="Quit" type="Button" parent="Menu/InGameMenuMargin/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit
+"

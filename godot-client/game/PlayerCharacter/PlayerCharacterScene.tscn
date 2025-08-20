@@ -1,0 +1,560 @@
+[gd_scene load_steps=52 format=3 uid="uid://bwggrf7sbmkcv"]
+
+[ext_resource type="Script" uid="uid://d3s8yxuvpmekm" path="res://game/PlayerCharacter/PlayerCharacterScript.gd" id="1_oog1p"]
+[ext_resource type="Script" uid="uid://11klj8n5vpt0" path="res://game/PlayerCharacter/hitbox_head.gd" id="2_tmkws"]
+[ext_resource type="Script" uid="uid://b0fbr48rbvn27" path="res://game/PlayerCharacter/Camera/CameraScript.gd" id="3_bdrh5"]
+[ext_resource type="Script" uid="uid://k7djd8c1xge2" path="res://game/Weapons/Scripts/Camera/CameraRecoilHolderScript.gd" id="4_re7rj"]
+[ext_resource type="Script" uid="uid://d2jpda3mq5jpa" path="res://game/Weapons/Scripts/WeaponManagerScript.gd" id="5_fqjcm"]
+[ext_resource type="Script" uid="uid://bnhfyt5sl8jcd" path="res://game/Weapons/Scripts/WeaponResourcesScript.gd" id="6_b1dq5"]
+[ext_resource type="Resource" uid="uid://j42d6dl8qkaj" path="res://game/Weapons/Resources/PistolWeaponResources.tres" id="7_wirum"]
+[ext_resource type="Script" uid="uid://bcka80usfl4am" path="res://game/Weapons/Scripts/WeaponSlotScript.gd" id="8_agnd3"]
+[ext_resource type="ArrayMesh" uid="uid://bo76efi214535" path="res://game/assets/weapons/low_poly_pistol/low_poly_pistol_mesh.res" id="9_oog1p"]
+[ext_resource type="Script" uid="uid://pufyqjrkl22t" path="res://game/Weapons/Scripts/ShootManagerScript.gd" id="10_myxxu"]
+[ext_resource type="Script" uid="uid://cfbsp443am2jd" path="res://game/Weapons/Scripts/ReloadManagerScript.gd" id="11_ckhv0"]
+[ext_resource type="Script" uid="uid://b45mr122adhlv" path="res://game/Weapons/Scripts/Ammunition/AmmunitionManagerScript.gd" id="12_ufvhm"]
+[ext_resource type="Script" uid="uid://bc64rms0gin6g" path="res://game/Weapons/Scripts/AnimationManagerScript.gd" id="13_72wv8"]
+[ext_resource type="Script" uid="uid://sca7ypsol83f" path="res://game/PlayerCharacter/StateMachine/StateMachineScript.gd" id="14_cptqk"]
+[ext_resource type="Script" uid="uid://stil4xkf3tk0" path="res://game/PlayerCharacter/StateMachine/IdleStateScript.gd" id="15_gmotb"]
+[ext_resource type="Script" uid="uid://bhoqhv7escpyx" path="res://game/PlayerCharacter/StateMachine/CrouchStateScript.gd" id="16_bm4fs"]
+[ext_resource type="Script" uid="uid://blt7dest23fk0" path="res://game/PlayerCharacter/StateMachine/WalkStateScript.gd" id="17_w1f2o"]
+[ext_resource type="Script" uid="uid://5gk47o641xgt" path="res://game/PlayerCharacter/StateMachine/RunStateScript.gd" id="18_hvdi7"]
+[ext_resource type="Script" uid="uid://dvu58wf01wils" path="res://game/PlayerCharacter/StateMachine/JumpStateScript.gd" id="19_x7qnf"]
+[ext_resource type="Script" uid="uid://bh3rdvokmrar1" path="res://game/PlayerCharacter/StateMachine/InairStateScript.gd" id="20_r08p1"]
+[ext_resource type="PackedScene" uid="uid://bodmr74jwgi5g" path="res://game/PlayerCharacter/UI/player_ui.tscn" id="21_4hhey"]
+[ext_resource type="Script" uid="uid://b444whi1t4ggg" path="res://game/PlayerCharacter/player_input.gd" id="22_6hm04"]
+[ext_resource type="Script" uid="uid://cyuq81eounly0" path="res://game/PlayerCharacter/gameplay.gd" id="23_ltjnr"]
+[ext_resource type="PackedScene" uid="uid://qsh5m8pulul5" path="res://game/PlayerCharacter/health_system.tscn" id="24_tprt8"]
+[ext_resource type="PackedScene" uid="uid://0by3fcnl3a5n" path="res://game/assets/models/master/master_scene.tscn" id="25_n0hoc"]
+
+[sub_resource type="Curve" id="Curve_b3kaq"]
+_limits = [8.0, 20.0, 0.0, 60.0]
+_data = [Vector2(0, 8), 0.0, 0.0, 0, 0, Vector2(60, 20), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_8ryj3"]
+_limits = [8.0, 20.0, 0.0, 30.0]
+_data = [Vector2(0, 8), 0.0, 0.0, 0, 0, Vector2(30, 20), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cl8pt"]
+radius = 0.3
+height = 1.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o0oj7"]
+radius = 0.25
+
+[sub_resource type="Animation" id="Animation_vs6b3"]
+resource_name = "EquipAnimAssaultRifle"
+length = 0.2
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_kdof8"]
+resource_name = "EquipAnimPistol"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponContainer/Pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.2, -0.4, -0.151), Vector3(0.20047, -0.153444, -0.150842)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponContainer/Pistol:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 1.0472), Vector3(0, 3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponContainer/Pistol:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ic0m3"]
+resource_name = "EquipAnimRocketLauncher"
+length = 0.2
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_4hp3t"]
+resource_name = "EquipAnimShotgun"
+length = 0.2
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_ecny7"]
+resource_name = "EquipAnimSniperRifle"
+length = 0.2
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_touoi"]
+resource_name = "ReloadAnimAssaultRifle"
+length = 2.0
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_do0ij"]
+resource_name = "ReloadAnimPistol"
+length = 0.9
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponContainer/Pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.45, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.20047, -0.153444, -0.150842), Vector3(0.20047, -0.153444, -0.150842), Vector3(0.20047, -0.117156, -0.150842), Vector3(0.20047, -0.153444, -0.150842), Vector3(0.20047, -0.153444, -0.150842)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponContainer/Pistol:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0), Vector3(0, 3.14159, 0.872665), Vector3(0, 3.14159, 0.872665), Vector3(0, 3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponContainer/Pistol:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_w2kmr"]
+resource_name = "ReloadAnimRocketLauncher"
+length = 1.8
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_br112"]
+resource_name = "ReloadAnimShotgun"
+length = 0.2
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_lny76"]
+resource_name = "ReloadAnimSniperRifle"
+length = 2.0
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_1rskr"]
+resource_name = "ShootAnimAssaultRifle"
+length = 0.11
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_msp70"]
+resource_name = "ShootAnimPistol"
+length = 0.19
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponContainer/Pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.19),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.20047, -0.153444, -0.150842), Vector3(0.2, -0.153, -0.13), Vector3(0.20047, -0.153444, -0.150842)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponContainer/Pistol:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.19),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0), Vector3(-0.0698132, 3.14159, 0), Vector3(0, 3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponContainer/Pistol:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ljxak"]
+resource_name = "ShootAnimRocketLauncher"
+length = 0.8
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_thytq"]
+resource_name = "ShootAnimShotgun"
+length = 0.5
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_2uxy5"]
+resource_name = "ShootAnimSniperRifle"
+length = 0.9
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_hk0st"]
+resource_name = "UnequipAnimAssaultRifle"
+length = 0.2
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_43gd7"]
+resource_name = "UnequipAnimPistol"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponContainer/Pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.20047, -0.153444, -0.150842), Vector3(0.2, -0.4, -0.151)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponContainer/Pistol:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0), Vector3(0, 3.14159, 1.0472)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponContainer/Pistol:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_du43i"]
+resource_name = "UnequipAnimRocketLauncher"
+length = 0.2
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_2xut0"]
+resource_name = "UnequipAnimShotgun"
+length = 0.2
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_5k808"]
+resource_name = "UnequipAnimSniperRifle"
+length = 0.2
+step = 0.01
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tt46u"]
+_data = {
+&"EquipAnimAssaultRifle": SubResource("Animation_vs6b3"),
+&"EquipAnimPistol": SubResource("Animation_kdof8"),
+&"EquipAnimRocketLauncher": SubResource("Animation_ic0m3"),
+&"EquipAnimShotgun": SubResource("Animation_4hp3t"),
+&"EquipAnimSniperRifle": SubResource("Animation_ecny7"),
+&"ReloadAnimAssaultRifle": SubResource("Animation_touoi"),
+&"ReloadAnimPistol": SubResource("Animation_do0ij"),
+&"ReloadAnimRocketLauncher": SubResource("Animation_w2kmr"),
+&"ReloadAnimShotgun": SubResource("Animation_br112"),
+&"ReloadAnimSniperRifle": SubResource("Animation_lny76"),
+&"ShootAnimAssaultRifle": SubResource("Animation_1rskr"),
+&"ShootAnimPistol": SubResource("Animation_msp70"),
+&"ShootAnimRocketLauncher": SubResource("Animation_ljxak"),
+&"ShootAnimShotgun": SubResource("Animation_thytq"),
+&"ShootAnimSniperRifle": SubResource("Animation_2uxy5"),
+&"UnequipAnimAssaultRifle": SubResource("Animation_hk0st"),
+&"UnequipAnimPistol": SubResource("Animation_43gd7"),
+&"UnequipAnimRocketLauncher": SubResource("Animation_du43i"),
+&"UnequipAnimShotgun": SubResource("Animation_2xut0"),
+&"UnequipAnimSniperRifle": SubResource("Animation_5k808")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_buf4k"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("CameraHolder/CameraRecoilHolder/Camera/WeaponManager/AnimationPlayer:current_animation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("HealthSystem:health")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath("PlayerInput:input_dir")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("PlayerInput:is_jumping")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("PlayerInput:is_sprinting")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("PlayerInput:is_crouching")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("CameraHolder:rotation:y")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("CameraHolder/CameraRecoilHolder/Camera:rotation:x")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("CameraHolder/CameraRecoilHolder/Camera/WeaponManager/WeaponContainer:visible")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("CameraHolder/CameraRecoilHolder/Camera/WeaponManager/WeaponContainer/Pistol:visible")
+properties/10/spawn = true
+properties/10/replication_mode = 2
+
+[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("player_input", "player_model", "health_system", "look_at_target", "player_ui")]
+collision_layer = 34
+collision_mask = 97
+floor_block_on_wall = false
+floor_max_angle = 1.309
+floor_snap_length = 0.0
+platform_floor_layers = 4278190081
+script = ExtResource("1_oog1p")
+player_input = NodePath("PlayerInput")
+player_model = NodePath("master")
+health_system = NodePath("HealthSystem")
+look_at_target = NodePath("CameraHolder/CameraRecoilHolder/Camera/Marker3D")
+player_ui = NodePath("PlayerUI")
+desiredMoveSpeedCurve = SubResource("Curve_b3kaq")
+maxSpeed = 20.0
+inAirMoveSpeedCurve = SubResource("Curve_8ryj3")
+baseHitboxHeight = 1.5
+baseModelHeight = 1.5
+heightChangeSpeed = 10.0
+crouchSpeed = 1.5
+crouchAccel = 9.0
+crouchDeccel = 8.0
+crouchHitboxHeight = 1.5
+crouchModelHeight = 1.5
+walkSpeed = 3.0
+walkAccel = 9.0
+walkDeccel = 9.0
+runSpeed = 6.5
+runAccel = 8.0
+runDeccel = 7.0
+jumpHeight = 2.1999999999970896
+jumpTimeToPeak = 0.6000000000058208
+jumpTimeToFall = 0.4000000000087311
+jumpCooldown = 0.2
+coyoteJumpCooldown = 0.2
+inAirInputMultiplier = 0.2
+moveForwardAction = "up"
+moveBackwardAction = "down"
+moveLeftAction = "left"
+moveRightAction = "right"
+runAction = "sprint"
+crouchAction = "crouch"
+jumpAction = "jump"
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_cl8pt")
+debug_color = Color(1, 0, 0.1137255, 0.78431374)
+
+[node name="HitboxHead" type="StaticBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9394463, 0)
+collision_layer = 0
+collision_mask = 0
+input_ray_pickable = false
+script = ExtResource("2_tmkws")
+
+[node name="HitboxHeadCollision" type="CollisionShape3D" parent="HitboxHead"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15490818, 0)
+shape = SubResource("SphereShape3D_o0oj7")
+debug_color = Color(0.972549, 0, 0.4392157, 0.8117647)
+
+[node name="CameraHolder" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_bdrh5")
+maxUpAngleView = -88.0
+maxDownAngleView = 88.0
+baseCameraLerpSpeed = 8.0
+crouchCameraLerpSpeed = 8.0
+crouchCameraDepth = -0.4
+bobFrequency = 0.9
+bobAmplitude = 0.1
+enableTilt = false
+tiltRotationValue = 0.6
+tiltRotationSpeed = 2.0
+inAirTiltValDivider = 1.9
+mouseInputSpeed = 5.0
+
+[node name="CameraRecoilHolder" type="Node3D" parent="CameraHolder"]
+unique_name_in_owner = true
+script = ExtResource("4_re7rj")
+
+[node name="Camera" type="Camera3D" parent="CameraHolder/CameraRecoilHolder"]
+unique_name_in_owner = true
+fov = 90.0
+near = 0.01
+far = 1000.0
+
+[node name="WeaponManager" type="Node3D" parent="CameraHolder/CameraRecoilHolder/Camera" node_paths=PackedStringArray("startWeapons")]
+unique_name_in_owner = true
+script = ExtResource("5_fqjcm")
+weaponResources = Array[ExtResource("6_b1dq5")]([ExtResource("7_wirum")])
+startWeapons = [NodePath("WeaponContainer/Pistol")]
+shoot_action = "weapon_shoot"
+reload_action = "weapon_reload"
+weapon_wheel_up_action = "weapon_up"
+weapon_wheel_down_action = "weapon_down"
+
+[node name="WeaponContainer" type="Node3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67602e-09, -0.0115472, -0.038343)
+
+[node name="Pistol" type="Node3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager/WeaponContainer" node_paths=PackedStringArray("model", "attackPoint", "muzzleFlashSpawner")]
+transform = Transform3D(-0.14999938, 0.259808, 6.337954e-07, 0.259808, 0.14999938, 0, -3.8027568e-07, 6.586605e-07, -0.25, 0.2, -0.4, -0.151)
+script = ExtResource("8_agnd3")
+model = NodePath(".")
+weaponId = 1
+attackPoint = NodePath("PistolModel/PistolAttackPoint")
+muzzleFlashSpawner = NodePath("PistolModel/PistolMuzzleFlashSpawner")
+
+[node name="PistolModel" type="Node3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager/WeaponContainer/Pistol"]
+transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, 0, 0, 0)
+
+[node name="pistol_1" type="MeshInstance3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager/WeaponContainer/Pistol/PistolModel"]
+transform = Transform3D(-100, 8.742278e-06, 3.8213708e-13, 0, -4.371139e-06, 100, 8.742278e-06, 100, 4.371139e-06, 0, -0.15, 0)
+layers = 4
+mesh = ExtResource("9_oog1p")
+skeleton = NodePath("")
+
+[node name="PistolAttackPoint" type="Marker3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager/WeaponContainer/Pistol/PistolModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.78936e-08, 0.154984, 0.541926)
+
+[node name="PistolMuzzleFlashSpawner" type="Marker3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager/WeaponContainer/Pistol/PistolModel"]
+transform = Transform3D(1, 0, -4.54747e-13, 0, 1, 0, 0, 0, 1, -1.19209e-07, 0.065257, 0.568656)
+
+[node name="ShootManager" type="Node3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager"]
+unique_name_in_owner = true
+script = ExtResource("10_myxxu")
+
+[node name="ReloadManager" type="Node3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager"]
+unique_name_in_owner = true
+script = ExtResource("11_ckhv0")
+
+[node name="AmmunitionManager" type="Node3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager"]
+unique_name_in_owner = true
+script = ExtResource("12_ufvhm")
+
+[node name="AnimationManager" type="Node3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager"]
+unique_name_in_owner = true
+script = ExtResource("13_72wv8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_tt46u")
+}
+
+[node name="Marker3D" type="Marker3D" parent="CameraHolder/CameraRecoilHolder/Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+
+[node name="Raycasts" type="Node3D" parent="."]
+
+[node name="CeilingCheck" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.758088, 0)
+exclude_parent = false
+target_position = Vector3(0, 4, 0)
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="FloorCheck" type="RayCast3D" parent="Raycasts"]
+exclude_parent = false
+target_position = Vector3(0, -4, 0)
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 0.956863, 1)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+unique_name_in_owner = true
+script = ExtResource("14_cptqk")
+initialState = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("15_gmotb")
+metadata/_custom_type_script = "uid://stil4xkf3tk0"
+
+[node name="CrouchState" type="Node" parent="StateMachine"]
+script = ExtResource("16_bm4fs")
+metadata/_custom_type_script = "uid://bhoqhv7escpyx"
+
+[node name="WalkState" type="Node" parent="StateMachine"]
+script = ExtResource("17_w1f2o")
+metadata/_custom_type_script = "uid://blt7dest23fk0"
+
+[node name="RunState" type="Node" parent="StateMachine"]
+script = ExtResource("18_hvdi7")
+metadata/_custom_type_script = "uid://5gk47o641xgt"
+
+[node name="JumpState" type="Node" parent="StateMachine"]
+script = ExtResource("19_x7qnf")
+metadata/_custom_type_script = "uid://dvu58wf01wils"
+
+[node name="InairState" type="Node" parent="StateMachine"]
+script = ExtResource("20_r08p1")
+metadata/_custom_type_script = "uid://bh3rdvokmrar1"
+
+[node name="PlayerUI" parent="." instance=ExtResource("21_4hhey")]
+
+[node name="PlayerInput" type="Node" parent="."]
+script = ExtResource("22_6hm04")
+
+[node name="Gameplay" type="Node" parent="."]
+script = ExtResource("23_ltjnr")
+
+[node name="HealthSystem" parent="." instance=ExtResource("24_tprt8")]
+max_health = 200
+health = 200
+regen_increment = 4
+
+[node name="master" parent="." instance=ExtResource("25_n0hoc")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.75, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_buf4k")

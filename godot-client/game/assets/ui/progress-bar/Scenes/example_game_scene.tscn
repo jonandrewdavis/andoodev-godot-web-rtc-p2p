@@ -1,0 +1,362 @@
+[gd_scene load_steps=8 format=3 uid="uid://8r7ii61n8ed4"]
+
+[ext_resource type="Script" uid="uid://c62rw2iltcphu" path="res://game/assets/ui/progress-bar/Scripts/player_example.gd" id="1_u7mxg"]
+[ext_resource type="Shader" path="res://progress_bar.gdshader" id="2_lbq4q"]
+[ext_resource type="Script" uid="uid://wbnqar1hyhh8" path="res://game/assets/ui/progress-bar/Scripts/progress_bar.gd" id="3_owxo5"]
+[ext_resource type="Texture2D" uid="uid://cna1fpmnqcu43" path="res://game/assets/ui/progress-bar/Textures/frame_05.png" id="4_owjy1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tpvsj"]
+shader = ExtResource("2_lbq4q")
+shader_parameter/bar_mode = 2
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 10
+shader_parameter/discrete_fill_amount = 10
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 15
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 0.5
+shader_parameter/inner_border_thickness_multiplier = 1.0
+shader_parameter/outer_border_size = 2.0
+shader_parameter/slant_amount = 0.0
+shader_parameter/scale = 0.0
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4eo2h"]
+shader = ExtResource("2_lbq4q")
+shader_parameter/bar_mode = 4
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 1
+shader_parameter/discrete_fill_amount = 1
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 3.022
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(0, 0.514093, 0.828449, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = false
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 15
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0, 0.480211, 0.865347, 1)
+shader_parameter/fluid_highlight_color = Color(1, 1, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.5
+shader_parameter/fluid_noise_scale = 9.0
+shader_parameter/gas_mode = true
+shader_parameter/gas_intensity = 3.0
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.05
+shader_parameter/universal_border_size = 0.1
+shader_parameter/horizontal_border_size = 0.5
+shader_parameter/inner_border_thickness_multiplier = 1.5
+shader_parameter/outer_border_size = 0.1
+shader_parameter/slant_amount = 0.0
+shader_parameter/scale = 0.0
+shader_parameter/slant_clip_margin = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gt0tr"]
+shader = ExtResource("2_lbq4q")
+shader_parameter/bar_mode = 0
+shader_parameter/fill_mode = 0
+shader_parameter/segment_count = 10
+shader_parameter/discrete_fill_amount = 10
+shader_parameter/fade_fill_amount = 1.0
+shader_parameter/pour_fill_amount = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/flash_type = 0
+shader_parameter/flash_segment = 0
+shader_parameter/flash_intensity = 0.0
+shader_parameter/single_segment_previous_fill = 1.0
+shader_parameter/single_segment_current_fill = 1.0
+shader_parameter/single_segment_flash_intensity = 0.8
+shader_parameter/flash_from_segment = 0
+shader_parameter/flash_to_segment = 0
+shader_parameter/single_segment_fade_from = 1.0
+shader_parameter/single_segment_fade_to = 1.0
+shader_parameter/single_segment_fade_progress = 0.0
+shader_parameter/drain_previous_fill = 1.0
+shader_parameter/drain_current_fill = 1.0
+shader_parameter/drain_time_progress = 0.0
+shader_parameter/background_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/filled_color = Color(1, 0.85, 0, 1)
+shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/drain_flash_color = Color(1, 1, 1, 1)
+shader_parameter/custom_frame = true
+shader_parameter/frame_texture = ExtResource("4_owjy1")
+shader_parameter/frame_trim = 0.0
+shader_parameter/alpha_threshold = 0.69
+shader_parameter/scan_steps = 15
+shader_parameter/edge_smoothness = 0.02
+shader_parameter/mask_expansion = 0.0
+shader_parameter/frame_edge_opacity = 0.9
+shader_parameter/fluid_base_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/fluid_highlight_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/fluid_shadow_color = Color(0.1, 0.3, 0.6, 1)
+shader_parameter/fluid_flow_speed = 1.5
+shader_parameter/fluid_turbulence = 1.0
+shader_parameter/fluid_noise_scale = 6.0
+shader_parameter/gas_mode = false
+shader_parameter/gas_intensity = 0.8
+shader_parameter/effect_mode = 0
+shader_parameter/effect_strength = 0.3
+shader_parameter/effect_speed = 1.5
+shader_parameter/wave_thickness = 0.1
+shader_parameter/bubbles_aspect_ratio = 1.0
+shader_parameter/vertical_gradient = true
+shader_parameter/V_gradient_strength = 0.6
+shader_parameter/horizontal_gradient = false
+shader_parameter/H_gradient_strength = 0.75
+shader_parameter/segment_gap = 0.0
+shader_parameter/universal_border_size = 0.0
+shader_parameter/horizontal_border_size = 1.0
+shader_parameter/inner_border_thickness_multiplier = 1.5
+shader_parameter/outer_border_size = 2.0
+shader_parameter/slant_amount = 0.0
+shader_parameter/scale = 0.0
+shader_parameter/slant_clip_margin = 0.0
+
+[node name="ExampleGameScene" type="Node"]
+
+[node name="Info" type="Node" parent="."]
+
+[node name="HelthBarControls" type="Panel" parent="Info"]
+offset_left = 584.0
+offset_top = 24.0
+offset_right = 904.0
+offset_bottom = 152.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Info/HelthBarControls"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 8.0
+offset_right = 288.0
+offset_bottom = 48.0
+text = "Press 1 to take 10 damage"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Info/HelthBarControls"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 48.0
+offset_right = 256.0
+offset_bottom = 88.0
+text = "Press 2 to gain 10 HP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Info/HelthBarControls"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 88.0
+offset_right = 320.0
+offset_bottom = 128.0
+text = "Press 3 to set the health value to 20%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthDisplay" type="Panel" parent="Info/HelthBarControls"]
+layout_mode = 0
+offset_left = -312.0
+offset_top = 128.0
+offset_right = -136.0
+offset_bottom = 168.0
+
+[node name="HealthValue" type="RichTextLabel" parent="Info/HelthBarControls/HealthDisplay"]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 40.0
+text = "Health: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaDisplay" type="Panel" parent="Info/HelthBarControls"]
+layout_mode = 0
+offset_left = -312.0
+offset_top = 360.0
+offset_right = -136.0
+offset_bottom = 400.0
+
+[node name="ManaValue" type="RichTextLabel" parent="Info/HelthBarControls/ManaDisplay"]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 40.0
+text = "Health: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XPDisplay" type="Panel" parent="Info/HelthBarControls"]
+layout_mode = 0
+offset_left = -304.0
+offset_top = 560.0
+offset_right = -128.0
+offset_bottom = 600.0
+
+[node name="XPValue" type="RichTextLabel" parent="Info/HelthBarControls/XPDisplay"]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 40.0
+text = "Health: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaBarControls" type="Panel" parent="Info"]
+offset_left = 576.0
+offset_top = 256.0
+offset_right = 896.0
+offset_bottom = 384.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Info/ManaBarControls"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 8.0
+offset_right = 256.0
+offset_bottom = 48.0
+text = "Press 4 to use 10 mana"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Info/ManaBarControls"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 48.0
+offset_right = 256.0
+offset_bottom = 88.0
+text = "Press 5 to gain 10 mana"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Info/ManaBarControls"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 88.0
+offset_right = 320.0
+offset_bottom = 128.0
+text = "Press 3 to set the mana value to 50%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XPBarControls" type="Panel" parent="Info"]
+offset_left = 584.0
+offset_top = 456.0
+offset_right = 904.0
+offset_bottom = 584.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Info/XPBarControls"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 48.0
+offset_right = 256.0
+offset_bottom = 88.0
+text = "Press 7 to gain 10XP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player" type="Node" parent="." node_paths=PackedStringArray("health_bar", "mana_bar", "xp_bar")]
+script = ExtResource("1_u7mxg")
+health_bar = NodePath("Health_bar")
+mana_bar = NodePath("Mana_bar")
+xp_bar = NodePath("XP_bar")
+
+[node name="Health_bar" type="ColorRect" parent="Player"]
+material = SubResource("ShaderMaterial_tpvsj")
+offset_left = 168.0
+offset_top = 24.0
+offset_right = 552.0
+offset_bottom = 152.0
+script = ExtResource("3_owxo5")
+flow_mode = "Discrete"
+effect_type = "Drain"
+
+[node name="Mana_bar" type="ColorRect" parent="Player"]
+material = SubResource("ShaderMaterial_4eo2h")
+offset_left = 160.0
+offset_top = 256.0
+offset_right = 565.0
+offset_bottom = 384.0
+script = ExtResource("3_owxo5")
+flow_mode = "Discrete"
+effect_type = "Drain"
+
+[node name="XP_bar" type="ColorRect" parent="Player"]
+material = SubResource("ShaderMaterial_gt0tr")
+offset_left = 176.0
+offset_top = 456.0
+offset_right = 560.0
+offset_bottom = 584.0
+script = ExtResource("3_owxo5")
+effect_type = "Drain"

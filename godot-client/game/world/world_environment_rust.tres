@@ -1,0 +1,23 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://ccvbsj3m2xgxj"]
+
+[ext_resource type="Texture2D" uid="uid://8cisjmdyd3pq" path="res://game/assets/environment/pano/mountain_sky.jpg" id="1_ejpuu"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5hesp"]
+panorama = ExtResource("1_ejpuu")
+
+[sub_resource type="Sky" id="Sky_vwhhl"]
+sky_material = SubResource("PanoramaSkyMaterial_5hesp")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_vwhhl")
+ambient_light_source = 2
+ambient_light_color = Color(0.8440497, 0.88814795, 1, 1)
+ambient_light_energy = 0.7
+reflected_light_source = 1
+tonemap_mode = 4
+tonemap_exposure = 0.4
+fog_mode = 1
+fog_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 0.92
+fog_density = 0.75
