@@ -111,7 +111,7 @@ func _ready():
 		$HitboxHead.add_to_group("EnemiesHead")
 		$HitboxHead.set_collision_layer_value(6, true) 
 		%WeaponContainer.set_scale(Vector3(1.7, 1.7, 1.7))
-		%WeaponContainer.position = Vector3(-0.15, 0.63, 0.0)		
+		%WeaponContainer.position = Vector3(-0.15, 0.0, 0.0)		
 
 	#set move variables, and value references
 	moveSpeed = walkSpeed

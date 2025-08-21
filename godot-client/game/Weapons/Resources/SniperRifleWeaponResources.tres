@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="WeaponResourceNew" load_steps=6 format=3 uid="uid://b63lj0c7tash0"]
+
+[ext_resource type="AudioStream" uid="uid://bhigie4rovst1" path="res://game/assets/sound/9mm Pistol Rack Full.mp3" id="1_y1nt7"]
+[ext_resource type="Script" uid="uid://bnhfyt5sl8jcd" path="res://game/Weapons/Scripts/WeaponResourcesScript.gd" id="2_ivqsi"]
+[ext_resource type="AudioStream" uid="uid://bhisptb5p7d1j" path="res://game/assets/sound/308 Bolt Cycle MP3.mp3" id="2_lu5e1"]
+[ext_resource type="AudioStream" uid="uid://mnroxs5rhqd2" path="res://game/assets/sound/762x54r Single Isolated MP3.mp3" id="4_dbvdo"]
+
+[sub_resource type="Curve" id="Curve_eo1mu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.678639, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.462132), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[resource]
+script = ExtResource("2_ivqsi")
+weaponName = "SniperRifle"
+weaponId = 2
+type = 1
+animBlendTime = 0.2
+equipAnimName = "EquipAnimSniperRifle"
+unequipAnimName = "UnequipAnimSniperRifle"
+shootAnimName = "ShootAnimSniperRifle"
+reloadAnimName = "ReloadAnimSniperRifle"
+equipSound = ExtResource("1_y1nt7")
+equipSoundSpeed = 0.40000000000873115
+shootSound = ExtResource("4_dbvdo")
+shootSoundSpeed = 0.4000000000087311
+reloadSound = ExtResource("2_lu5e1")
+totalAmmoInMag = 5
+totalAmmoInMagRef = 5
+ammoType = "HeavyAmmo"
+equipTime = 0.2
+unequipTime = 0.2
+canAutoShoot = true
+nbProjShotsAtSameTime = 1
+nbProjShots = 1
+maxRange = 490.0
+damagePerProj = 200.0
+damageDropoff = SubResource("Curve_eo1mu")
+headshotDamageMult = 4.0
+timeBetweenShots = 0.95
+reloadTime = 2.05
+baseRotSpeed = 5.0
+targetRotSpeed = 9.0
+recoilVal = Vector3(0.2, 0.04, 0)
+position = Array[Vector3]([Vector3(0.208089, -0.137525, -0.165069), Vector3(0, 3.14159, 0)])
+tiltRotSpeed = 7.0
+tiltRotAmount = 0.25
+minSwayVal = Vector2(-20, -20)
+maxSwayVal = Vector2(20, 20)
+swaySpeedPos = 0.07
+swaySpeedRot = 0.1
+swayAmountPos = 0.2
+swayAmountRot = 44.0
+bobFreq = 0.01
+bobAmount = 0.023
+bobSpeed = 10.0
+onIdleBobFreqDivider = 1.4

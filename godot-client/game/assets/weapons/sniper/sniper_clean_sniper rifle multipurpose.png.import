@@ -1,0 +1,44 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dxr84ukuwjybl"
+path.s3tc="res://.godot/imported/sniper_clean_sniper rifle multipurpose.png-ad4c250ea13779f72eaba3b4f24451b2.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "a1b97612e2efe54d193c9fe6f4367dbe"
+}
+
+[deps]
+
+source_file="res://game/assets/weapons/sniper/sniper_clean_sniper rifle multipurpose.png"
+dest_files=["res://.godot/imported/sniper_clean_sniper rifle multipurpose.png-ad4c250ea13779f72eaba3b4f24451b2.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://game/assets/weapons/sniper/sniper_clean_sniper rifle multipurpose.png"
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

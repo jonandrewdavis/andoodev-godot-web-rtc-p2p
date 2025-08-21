@@ -4,6 +4,20 @@ var player_scene_new = preload("res://game/PlayerCharacter/PlayerCharacterScene.
 
 @export var player_container: Node3D
 
+## TODO: 
+# - Leaderboard
+# - Name tags (killed by X messages)
+# - Name above player
+# - Color picker
+# - Reload weapons while dead
+# - In game chat (lobby messages)
+# - Add Melee 
+# - Add Sniper 
+# - Nerf or change how jump works?
+# - Document
+# - Re-brand to AndooDev (on youtube?)
+
+
 func _ready() -> void:
 	multiplayer.connected_to_server.connect(RTCServerConnected)
 	multiplayer.peer_connected.connect(RTCPeerConnected)
@@ -20,9 +34,6 @@ func RTCPeerConnected(id: int):
 	
 func RTCPeerDisconnected(id):
 	print("WORLD: rtc peer disconnected " + str(id))
-
-func _process(_delta: float) -> void:
-	pass
 
 func add_player_to_game(id: int):
 	var has_id = id in player_container.get_children().map(func(node): int(node.name))

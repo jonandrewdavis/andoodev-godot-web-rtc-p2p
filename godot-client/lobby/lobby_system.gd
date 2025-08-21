@@ -1,7 +1,7 @@
 extends Node
 
 signal signal_client_connection_started
-signal signal_client_connection_confirmed
+signal signal_client_connection_confirmed(id)
 signal signal_client_disconnected
 
 signal signal_user_joined(id)
@@ -12,6 +12,8 @@ signal signal_lobby_list_changed(lobbies)
 signal signal_lobby_chat(chat_user, chat_text)
 signal signal_lobby_own_info(lobby)
 signal signal_lobby_game_started
+
+signal signal_network_create_new_peer_connection
 
 signal signal_packet_parsed(message)
 
@@ -56,6 +58,8 @@ var current_username = ''
 
 func _ready():
 	set_process(false)
+	signal_client_connection_confirmed.connect(_network_create_multiplayer_peer)
+	signal_network_create_new_peer_connection.connect(_network_create_new_peer_connection)
 	tree_exited.connect(_ws_close_connection)
 
 func _process(_delta):
@@ -101,7 +105,6 @@ func _ws_process_packet(message):
 			# TODO: Rename "Action_Connect" to be "confirmed". It's sending us our peer id.
 			if  message.payload.has("webId"):
 				signal_client_connection_confirmed.emit(message.payload.webId)
-				ws_peer_id = message.payload.webId
 			else:
 				_ws_close_connection(1000, "Couldn't authenticate")
 		Action_GetUsers:
@@ -130,13 +133,15 @@ func _ws_process_packet(message):
 				signal_lobby_chat.emit(message.payload.username, message.payload.message)
 		Action_GameStarted:
 			signal_lobby_game_started.emit()
+		Action_NewPeerConnection:
+			if message.payload.has("id"):
+				signal_network_create_new_peer_connection.emit(int(message.payload.id))
 		Action_Offer:
-			web_rtc_peer.get_peer(message.payload.orgPeer).connection.set_remote_description("offer", message.payload.data)
+			web_rtc_peer.get_peer(int(message.payload.orgPeer)).connection.set_remote_description("offer", message.payload.data)
 		Action_Answer:
-			web_rtc_peer.get_peer(message.payload.orgPeer).connection.set_remote_description("answer", message.payload.data)
+			web_rtc_peer.get_peer(int(message.payload.orgPeer)).connection.set_remote_description("answer", message.payload.data)
 		Action_Candidate:
-			web_rtc_peer.get_peer(message.payload.orgPeer).connection.add_ice_candidate(message.payload.mid, message.payload.index, message.payload.sdp)
-
+			web_rtc_peer.get_peer(int(message.payload.orgPeer)).connection.add_ice_candidate(message.payload.mid, message.payload.index, message.payload.sdp)
 
 func _ws_send_action(action: String, payload: Dictionary = {}):
 	if _is_web_socket_connected():
@@ -187,6 +192,7 @@ func user_disconnect():
 	signal_lobby_list_changed.emit([])
 	signal_lobby_own_info.emit(null)	
 	signal_client_disconnected.emit()
+	
 
 func lobby_create():
 	_ws_send_action(Action_CreateLobby)
@@ -213,6 +219,69 @@ func lobbies_get():
 func lobby_send_chat(message: String):
 	if message.length():
 		_ws_send_action(Action_MessageToLobby, { "message": message })
+
+#region WebRTCMultiplayerPeer
+
+
+func _network_create_multiplayer_peer(id: String):
+	ws_peer_id = id
+	web_rtc_peer = WebRTCMultiplayerPeer.new()
+	web_rtc_peer.create_mesh(int(ws_peer_id))
+	multiplayer.multiplayer_peer = web_rtc_peer
+
+func _network_create_new_peer_connection(id: int):
+	if id != int(ws_peer_id):
+		var new_peer_connection: WebRTCPeerConnection = WebRTCPeerConnection.new()
+		new_peer_connection.initialize({
+			"iceServers" : [{ "urls": [STUN_TURN_SERVER_URL] }]
+		})
+		print("binding id " + str(id) + " my id is " + str(ws_peer_id))
+
+		new_peer_connection.session_description_created.connect(self._offerCreated.bind(id))
+		new_peer_connection.ice_candidate_created.connect(self._iceCandidateCreated.bind(id))
+		web_rtc_peer.add_peer(new_peer_connection, id)
+		if id < web_rtc_peer.get_unique_id():
+			new_peer_connection.create_offer()
+
+func _offerCreated(type, data, id: int):
+	if !web_rtc_peer.has_peer(id):
+		return
+		
+	web_rtc_peer.get_peer(id).connection.set_local_description(type, data)
+	
+	if type == "offer":
+		_sendOffer(id, data)
+	else:
+		_sendAnswer(id, data)
+
+func _sendOffer(id: int, data):
+	var message = {
+		"peer" : id,
+		"orgPeer" : ws_peer_id,
+		"data": data,
+	}
+	_ws_send_action(Action_Offer, message)
+
+func _sendAnswer(id: int, data):
+	var message = {
+		"peer" : id, 
+		"orgPeer" : ws_peer_id, 
+		"data": data,
+	}
+	_ws_send_action(Action_Answer, message)
+
+func _iceCandidateCreated(midName, indexName, sdpName, id: int):
+	var message = {
+		"peer" : id,
+		"orgPeer" : ws_peer_id,
+		"mid": midName,
+		"index": indexName,
+		"sdp": sdpName,
+	}
+	_ws_send_action(Action_Candidate, message)
+
+#endregion
+
 
 func generate_random_name():
 	#@Emi's fantastic names 
