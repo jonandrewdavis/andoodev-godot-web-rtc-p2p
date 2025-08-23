@@ -5,6 +5,7 @@ class_name PlayerUI
 @onready var player: PlayerCharacter = get_parent()
 @onready var progress_bar = %Health
 
+var world: World 
 var RETICLE: Control
 
 func _ready() -> void:
@@ -36,15 +37,22 @@ func _ready() -> void:
 	%Disconnect.pressed.connect(_on_disconnect)
 	%Quit.pressed.connect(func(): get_tree().quit())
 
-	
-	%ScoreTimer.timeout.connect(update_score)
-	%ScoreTimer.start()
-
 	# Hit
 	player.signal_hit_success.connect(_on_hit_signal)
+	
 	%HitMarker.hide()
 	%HitMarker.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
 	%HitTimer.timeout.connect(func(): %HitMarker.hide())
+	
+	LobbySystem.signal_lobby_chat.connect(_render_lobby_chat_visible)
+	%LobbyChatFadeTimer.timeout.connect(_render_lobby_chat_fade)
+
+	LobbySystem.signal_lobby_own_info.connect(_render_own_lobby_info)
+	LobbySystem.lobby_get_own()
+
+	world = get_tree().get_first_node_in_group("World")
+	world.signal_player_death.connect(add_death_to_player)
+	world.signal_player_kill.connect(add_kill_to_player)
 
 func _process(_delta: float) -> void:
 	if %Menu.visible and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -96,15 +104,6 @@ func _on_sound_changed(new_value:float):
 func _on_disconnect():
 	if multiplayer != null && multiplayer.has_multiplayer_peer():
 		multiplayer.multiplayer_peer = null
-
-func update_score():
-	for _score in %Scoreboard.get_children():
-		_score.queue_free()
-		
-	#for _player_id in Hub.players:
-		#var new_label = Label.new()
-		#new_label.text = Hub.players[_player_id].username + ": " + str(Hub.players[_player_id].score) 
-		#%Scoreboard.add_child(new_label)
 	
 func _on_hit_signal(headshot = false):
 	%HitMarker.show()
@@ -128,3 +127,40 @@ func displayTotalAmmoInMag(totalAmmoInMag : int, nbProjShotsAtSameTime : int):
 func displayTotalAmmo(totalAmmo : int, nbProjShotsAtSameTime : int):
 	@warning_ignore("integer_division")
 	%LabelAmmoRemaining.set_text(str(totalAmmo/nbProjShotsAtSameTime))
+
+func _render_lobby_chat_visible(chat_user: String, chat_text: String):
+	%LobbyChatVisible.modulate.a = 1.0
+	%LobbyChatVisible.append_text(chat_user + " : " + chat_text)
+	%LobbyChatVisible.newline()
+	%LobbyChatFadeTimer.start()
+
+func _render_lobby_chat_fade():
+	var tween = get_tree().create_tween()
+	tween.tween_property(%LobbyChatVisible, "modulate:a", 0.0, 0.8)
+	tween.play()
+	await tween.finished
+	tween.kill()
+
+# TODO: Would be nice to have some type saftey on this
+func _render_own_lobby_info(lobby):
+	# TODO: We clear the scoreboard if new players join.
+	# We could make a list of not present Ids and just add those instead.
+	if lobby.players.size() != %LobbyScoreboard.get_child_count():
+		%LobbyScoreboard.get_children().map(func(el): el.queue_free())
+		
+	for _player in lobby.players:
+		if _player.id == player.name:
+			player.update_nameplate(_player.username)
+		
+		var new_player_item = Instantiate.scene(PlayerInfoItem)
+		new_player_item.name = _player.id 
+		new_player_item.set_user_data(_player.username, Color.WEB_PURPLE.to_html())
+		%LobbyScoreboard.add_child(new_player_item, true)
+
+func add_death_to_player(playerId: String):
+	var info_target: PlayerInfoItem = %LobbyScoreboard.get_node(playerId)
+	info_target.add_death()
+
+func add_kill_to_player(playerId: String):
+	var info_target: PlayerInfoItem = %LobbyScoreboard.get_node(playerId)
+	info_target.add_kill()

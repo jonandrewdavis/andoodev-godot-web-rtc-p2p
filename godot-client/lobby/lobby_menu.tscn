@@ -4,8 +4,9 @@
 [ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://lobby/theme/MinimalUI.tres" id="1_jmgru"]
 [ext_resource type="StyleBox" uid="uid://dltee5tb5lpnf" path="res://lobby/theme/lobby_panel_container_styleboxflat.tres" id="3_7ixe1"]
 [ext_resource type="Shader" uid="uid://cejq1gisa18xi" path="res://lobby/theme/background.gdshader" id="4_a04cy"]
-[ext_resource type="FontFile" uid="uid://bnudr3myap7vs" path="res://lobby/theme/Strait-Regular.ttf" id="5_26th1"]
 [ext_resource type="Texture2D" uid="uid://cc5ro6riiqfsg" path="res://game/assets/environment/rust_preview.jpg" id="5_j0pei"]
+[ext_resource type="PackedScene" uid="uid://b5bs8xlgxmi3q" path="res://lobby/lobby_chat.tscn" id="6_j0pei"]
+[ext_resource type="PackedScene" uid="uid://cr0rjm7booup1" path="res://lobby/lobby_color_grid/lobby_color_grid.tscn" id="6_j2isk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_26th1"]
 shader = ExtResource("4_a04cy")
@@ -26,18 +27,6 @@ width = 25
 height = 25
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ixe1"]
-content_margin_left = 15.0
-content_margin_top = 15.0
-content_margin_right = 15.0
-content_margin_bottom = 15.0
-bg_color = Color(0.0706742, 0.07067422, 0.07067417, 0.47058824)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 0.23529412)
 
 [node name="LobbyMenu" type="Control"]
 layout_mode = 3
@@ -272,40 +261,25 @@ texture = ExtResource("5_j0pei")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="ButtonLobbyStart" type="Button" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop"]
+layout_mode = 2
+
+[node name="ColorGrid" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/HBoxContainer" instance=ExtResource("6_j2isk")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonLobbyStart" type="Button" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 0
 text = "Start Game"
 
-[node name="LobbyBottom" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox"]
+[node name="LobbyChat" parent="Margin/Columns/ColumnLobby/LobbyVBox" instance=ExtResource("6_j0pei")]
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="V" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyBottom"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="LobbyChat" type="RichTextLabel" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyBottom/V"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("5_26th1")
-theme_override_styles/normal = SubResource("StyleBoxFlat_7ixe1")
-scroll_following = true
-
-[node name="H" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyBottom"]
-layout_mode = 2
-
-[node name="LobbyChatInput" type="LineEdit" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyBottom/H"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Chat"
-
-[node name="LobbyChatSend" type="Button" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyBottom/H"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Send"

@@ -2,6 +2,7 @@ extends Node
 
 var player: PlayerCharacter
 var health_system: HealthSystem
+var world: World
 
 #var ammoToRefill = {
 	#'GrenadeAmmo': 2,
@@ -12,24 +13,27 @@ var health_system: HealthSystem
 	#'ShellAmmo': 20,
 #}
 
+
 # TODO: Remove.
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_parent()
-	#player.add_to_group("targets")
 	health_system = player.get_node('HealthSystem')
 	health_system.death.connect(_on_death)
-	#if Hub.lobby_menu:
-		#Hub.lobby_menu.signal_lobby_get_own.connect(_on_get_own_lobby)
+	
+	world = get_tree().get_first_node_in_group('World')
+	
 	
 func _on_death():
-	#if Hub:
-		#Hub.score_updated.emit(health_system.last_damage_source)
 	player.set_collision_layer_value(2, false)
 	player.set_collision_layer_value(16, true)
 	player.immobile = true
 	player.toggle_weapon_visible(false)	
+	
+	world.broadcast_player_death.rpc(player.name)
+	world.broadcast_player_kill.rpc(str(health_system.last_damage_source))
+	
 	await get_tree().create_timer(5.0).timeout
 	_respawn()
 	
@@ -46,14 +50,8 @@ func _respawn():
 	#if linkToAmmoRefill != null:
 		#linkToAmmoRefill.ammoRefillLink(ammoToRefill)
 
-func _on_get_own_lobby(lobby):
+# TODO: We could do updates of score on the websockets server
+# But for traffic reduction, let's not do that right now
+#func _on_get_own_lobby(lobby):
+	#pass
 	#print(lobby)
-	for _player in lobby.players:
-		# TODO: tiring to cast this so often...
-		var _id = int(_player.id)
-		#Hub.players[_id] = { 
-			#'id': _id, 
-				#'username': _player.username, 
-			#'color': _player.color,
-			#'score': 0
-		#}

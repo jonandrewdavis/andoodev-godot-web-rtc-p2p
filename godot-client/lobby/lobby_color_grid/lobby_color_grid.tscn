@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr0rjm7booup1"]
+
+[ext_resource type="Script" uid="uid://v8buaf4wtgx1" path="res://lobby/lobby_color_grid/lobby_color_grid.gd" id="1_b4no6"]
+
+[node name="ColorGridPicker" type="HBoxContainer"]
+anchors_preset = -1
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_b4no6")
+
+[node name="ColorControl" type="FoldableContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Select Color"
+
+[node name="ColorGrid" type="GridContainer" parent="ColorControl"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+columns = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0

@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs3gvi8vdfpwp"]
+
+[ext_resource type="Script" uid="uid://b1gebami61hbr" path="res://game/PlayerCharacter/UI/player_info_item.gd" id="1_bm6jr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pf0d"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 1
+corner_detail = 5
+
+[sub_resource type="Gradient" id="Gradient_0pf0d"]
+offsets = PackedFloat32Array(0.44347826, 0.45217392)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bm6jr"]
+gradient = SubResource("Gradient_0pf0d")
+width = 24
+height = 24
+
+[node name="PlayerInfoItem" type="PanelContainer"]
+custom_minimum_size = Vector2(200, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_0pf0d")
+script = ExtResource("1_bm6jr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="LabelUsername" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "username"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="LabelKills" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="LabelDeaths" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="LabelColor" type="TextureRect" parent="HBoxContainer"]
+modulate = Color(1, 0.22745098, 1, 1)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_bm6jr")

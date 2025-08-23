@@ -121,7 +121,7 @@ func _ws_process_packet(message):
 			if message.payload.has("lobby"):
 				signal_lobby_own_info.emit(message.payload.lobby)
 			else:
-				signal_lobby_own_info.emit([])
+				signal_lobby_own_info.emit(null)
 		Action_PlayerJoin:
 			if message.payload.has("id"):
 				signal_user_joined.emit(message.payload.id)

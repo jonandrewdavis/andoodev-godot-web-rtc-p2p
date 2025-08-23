@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bodmr74jwgi5g"]
+[gd_scene load_steps=21 format=3 uid="uid://bodmr74jwgi5g"]
 
 [ext_resource type="Script" uid="uid://dbkd33tkoa5no" path="res://game/PlayerCharacter/UI/player_ui.gd" id="1_721h2"]
 [ext_resource type="Script" uid="uid://wbnqar1hyhh8" path="res://game/assets/ui/progress-bar/Scripts/progress_bar.gd" id="2_2npwm"]
@@ -8,9 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://bjgabt4w188s2" path="res://game/assets/ui/keys/TAB.png" id="4_587s8"]
 [ext_resource type="Texture2D" uid="uid://ckj546ywa71nr" path="res://game/assets/ui/keys/C.png" id="5_gyopi"]
 [ext_resource type="Texture2D" uid="uid://bs056of5ahnqb" path="res://game/assets/ui/keys/SHIFTBIGGER.png" id="6_1d6ur"]
+[ext_resource type="FontFile" uid="uid://bnudr3myap7vs" path="res://lobby/theme/Strait-Regular.ttf" id="8_4trht"]
 [ext_resource type="AudioStream" uid="uid://jo7livkwx30u" path="res://game/assets/sound/hitmarker.mp3" id="9_3sa24"]
 [ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://lobby/theme/MinimalUI.tres" id="9_xyb3v"]
 [ext_resource type="AudioStream" uid="uid://dfrym40wh1pg2" path="res://game/assets/sound/headshot_ping.mp3" id="10_fuqax"]
+[ext_resource type="PackedScene" uid="uid://b5bs8xlgxmi3q" path="res://lobby/lobby_chat.tscn" id="12_2lepv"]
 
 [sub_resource type="Gradient" id="Gradient_yswgc"]
 offsets = PackedFloat32Array(0.5034188, 0.9008547)
@@ -21,6 +23,18 @@ gradient = SubResource("Gradient_yswgc")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ixe1"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.0706742, 0.07067422, 0.07067417, 0.47058824)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.23529412)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_587s8"]
 shader = ExtResource("2_k8gwt")
@@ -93,6 +107,18 @@ width = 6
 height = 6
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4trht"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.7137255)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_721h2")
@@ -248,6 +274,22 @@ theme_override_constants/margin_bottom = 20
 [node name="Vbox" type="VBoxContainer" parent="TopLevelControl/BottomLeft"]
 layout_mode = 2
 
+[node name="LobbyChatVisible" type="RichTextLabel" parent="TopLevelControl/BottomLeft/Vbox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_4trht")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ixe1")
+fit_content = true
+scroll_active = false
+scroll_following = true
+vertical_alignment = 2
+
+[node name="LobbyChatFadeTimer" type="Timer" parent="TopLevelControl/BottomLeft/Vbox"]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+autostart = true
+
 [node name="Health" type="ColorRect" parent="TopLevelControl/BottomLeft/Vbox"]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_587s8")
@@ -318,11 +360,6 @@ autostart = true
 unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
-
-[node name="ScoreTimer" type="Timer" parent="TopLevelControl"]
-unique_name_in_owner = true
-wait_time = 2.0
-autostart = true
 
 [node name="HitMarker" type="Control" parent="TopLevelControl"]
 unique_name_in_owner = true
@@ -402,9 +439,11 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="PanelContainer" type="PanelContainer" parent="TopLevelControl/CenterContainer"]
+layout_mode = 2
+
 [node name="Menu" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -417,6 +456,7 @@ offset_bottom = 166.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9_xyb3v")
+theme_override_styles/panel = SubResource("StyleBoxFlat_4trht")
 
 [node name="InGameMenuMargin" type="MarginContainer" parent="Menu"]
 layout_mode = 2
@@ -426,40 +466,53 @@ theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/InGameMenuMargin"]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(600, 500)
 layout_mode = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Menu/InGameMenuMargin/VBoxContainer"]
+[node name="Closeinstructions" type="HBoxContainer" parent="Menu/InGameMenuMargin/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
+alignment = 2
 
-[node name="ColorRect" type="TextureRect" parent="Menu/InGameMenuMargin/VBoxContainer/HBoxContainer4"]
+[node name="LabelClosemenu" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer/Closeinstructions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Close Menu:"
+
+[node name="ColorRect" type="TextureRect" parent="Menu/InGameMenuMargin/VBoxContainer/Closeinstructions"]
 texture_filter = 3
+custom_minimum_size = Vector2(55, 40)
 layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("4_587s8")
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="Label" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer/HBoxContainer4"]
+[node name="LobbyScoreLabels" type="HBoxContainer" parent="Menu/InGameMenuMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer/LobbyScoreLabels"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 14
-text = "Close"
 
-[node name="Label3" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer"]
+[node name="Label2" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer/LobbyScoreLabels"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "Score"
+theme_override_font_sizes/font_size = 12
+text = "K"
 
-[node name="Scoreboard" type="VBoxContainer" parent="Menu/InGameMenuMargin/VBoxContainer"]
+[node name="Label3" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer/LobbyScoreLabels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "D"
+
+[node name="Label4" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer/LobbyScoreLabels"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="LobbyScoreboard" type="VBoxContainer" parent="Menu/InGameMenuMargin/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Settings" type="Label" parent="Menu/InGameMenuMargin/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "Settings"
+theme_override_constants/separation = 0
 
 [node name="GridContainer" type="GridContainer" parent="Menu/InGameMenuMargin/VBoxContainer"]
 layout_mode = 2
@@ -529,23 +582,27 @@ tick_count = 10
 ticks_on_borders = true
 ticks_position = 3
 
+[node name="HSeparator2" type="HSeparator" parent="Menu/InGameMenuMargin/VBoxContainer"]
+layout_mode = 2
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="Menu/InGameMenuMargin/VBoxContainer"]
 layout_mode = 2
+alignment = 2
 
 [node name="Respawn" type="Button" parent="Menu/InGameMenuMargin/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Respawn
-"
+text = "Respawn"
 
 [node name="Disconnect" type="Button" parent="Menu/InGameMenuMargin/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Disconnect
-"
+text = "Disconnect"
 
 [node name="Quit" type="Button" parent="Menu/InGameMenuMargin/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Quit
-"
+text = "Quit"
+
+[node name="LobbyChat" parent="Menu/InGameMenuMargin/VBoxContainer" instance=ExtResource("12_2lepv")]
+layout_mode = 2

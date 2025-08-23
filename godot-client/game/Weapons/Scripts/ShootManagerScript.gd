@@ -104,10 +104,11 @@ func hitscanShot(pointOfCollisionHitscan : Vector3):
 	
 	#create new intersection space to contain possibe collisions 
 	var newIntersection = PhysicsRayQueryParameters3D.create(cW.weSl.attackPoint.get_global_transform().origin, pointOfCollisionHitscan + spread + hitscanBulletDirection * 2)
+	newIntersection.set_exclude([weapM.playChar.get_rid()])
 	newIntersection.collide_with_areas = true
 	newIntersection.collide_with_bodies = true 
 	var hitscanBulletCollision = get_world_3d().direct_space_state.intersect_ray(newIntersection)
-	
+
 	#if the raycast has collide
 	if hitscanBulletCollision: 
 		var collider = hitscanBulletCollision.collider
@@ -122,20 +123,15 @@ func hitscanShot(pointOfCollisionHitscan : Vector3):
 			finalDamage = cW.damagePerProj * cW.damageDropoff.sample(pointOfCollisionHitscan.distance_to(global_position) / cW.maxRange)
 			collider.hitscanHit(finalDamage, hitscanBulletDirection, hitscanBulletCollision.position, source)
 			weapM.playChar.signal_hit_success.emit()
-		
 		elif collider.is_in_group("EnemiesHead") and collider.has_method("hitscanHit"):
 			finalDamage = cW.damagePerProj * cW.headshotDamageMult * cW.damageDropoff.sample(pointOfCollisionHitscan.distance_to(global_position) / cW.maxRange)
 			collider.hitscanHit(finalDamage, hitscanBulletDirection, hitscanBulletCollision.position, source)
 			weapM.playChar.signal_hit_success.emit(true)
-		
 		elif collider.is_in_group("HitableObjects") and collider.has_method("hitscanHit"): 
 			finalDamage = cW.damagePerProj * cW.damageDropoff.sample(pointOfCollisionHitscan.distance_to(global_position) / cW.maxRange)
 			collider.hitscanHit(finalDamage/6.0, hitscanBulletDirection, hitscanBulletCollision.position, source)
 			weapM.playChar.signal_hit_success.emit()
-			#weapM.displayBulletHole(colliderPoint, colliderNormal)
 		else:
-			#print('debug col: ', collider)
-			#print('DEBUG: COLLISION', hitscanBulletCollision.collider)
 			weapM.displayBulletHole(colliderPoint, colliderNormal)
 
 # NOTE: Unchanged legacy version			

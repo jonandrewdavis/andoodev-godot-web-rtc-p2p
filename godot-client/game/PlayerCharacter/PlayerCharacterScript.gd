@@ -10,6 +10,7 @@ class_name PlayerCharacter
 @export var look_at_target: Marker3D
 @export var player_ui: PlayerUI
 
+
 signal signal_hit_success(headshot)
 
 @export_group("Movement variables")
@@ -110,8 +111,8 @@ func _ready():
 		add_to_group("Enemies")
 		$HitboxHead.add_to_group("EnemiesHead")
 		$HitboxHead.set_collision_layer_value(6, true) 
-		%WeaponContainer.set_scale(Vector3(1.7, 1.7, 1.7))
-		%WeaponContainer.position = Vector3(-0.15, 0.0, 0.0)		
+		%WeaponContainer.set_scale(Vector3(1.2, 1.2, 1.2))
+		%WeaponContainer.position = Vector3(-0.15, 0.7, 0.0)		
 
 	#set move variables, and value references
 	moveSpeed = walkSpeed
@@ -151,3 +152,6 @@ func projectileHit(damageVal : float, _hitscanDir : Vector3, source = 1):
 
 func toggle_weapon_visible(value: bool):
 	%WeaponContainer.visible = value
+
+func update_nameplate(username: String):
+	%Nameplate.text = username

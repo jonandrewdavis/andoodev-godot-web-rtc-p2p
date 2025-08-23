@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bwggrf7sbmkcv"]
+[gd_scene load_steps=43 format=3 uid="uid://bwggrf7sbmkcv"]
 
 [ext_resource type="Script" uid="uid://d3s8yxuvpmekm" path="res://game/PlayerCharacter/PlayerCharacterScript.gd" id="1_oog1p"]
 [ext_resource type="Script" uid="uid://11klj8n5vpt0" path="res://game/PlayerCharacter/hitbox_head.gd" id="2_tmkws"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script" uid="uid://cyuq81eounly0" path="res://game/PlayerCharacter/gameplay.gd" id="23_ltjnr"]
 [ext_resource type="PackedScene" uid="uid://qsh5m8pulul5" path="res://game/PlayerCharacter/health_system.tscn" id="24_tprt8"]
 [ext_resource type="PackedScene" uid="uid://0by3fcnl3a5n" path="res://game/assets/models/master/master_scene.tscn" id="25_n0hoc"]
+[ext_resource type="FontFile" uid="uid://bnudr3myap7vs" path="res://lobby/theme/Strait-Regular.ttf" id="32_agnd3"]
 
 [sub_resource type="Curve" id="Curve_b3kaq"]
 _limits = [8.0, 20.0, 0.0, 60.0]
@@ -259,6 +260,12 @@ properties/9/replication_mode = 1
 properties/10/path = NodePath("CameraHolder/CameraRecoilHolder/Camera/WeaponManager/WeaponContainer/Pistol:visible")
 properties/10/spawn = true
 properties/10/replication_mode = 2
+properties/11/path = NodePath("CameraHolder/CameraRecoilHolder/Camera/WeaponManager/WeaponContainer/SniperRifle:visible")
+properties/11/spawn = true
+properties/11/replication_mode = 2
+properties/12/path = NodePath("Nameplate:text")
+properties/12/spawn = true
+properties/12/replication_mode = 2
 
 [node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("player_input", "player_model", "health_system", "look_at_target", "player_ui")]
 collision_layer = 34
@@ -496,3 +503,13 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_buf4k")
+
+[node name="Nameplate" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3979115, 0)
+billboard = 2
+fixed_size = true
+text = "Andrew "
+font = ExtResource("32_agnd3")
+font_size = 10
+outline_size = 4

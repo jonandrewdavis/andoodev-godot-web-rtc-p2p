@@ -85,8 +85,6 @@ func exitWeapon(nextWeapon : int):
 		if cW.canShoot: cW.canShoot = false
 		if cW.canReload: cW.canReload = false
 		
-		print(cW.unequipAnimName)
-		
 		if cW.unequipAnimName != "":
 			animManager.playModelAnimation("UnequipAnim%s" % cW.weaponName, cW.unequipAnimSpeed, false)
 		await get_tree().create_timer(cW.unequipTime).timeout

@@ -25,10 +25,8 @@ func _ready() -> void:
 	#weapon_manager.player = player
 	#weapon_manager.player_input = player.player_input
 
-	#if Hub.lobby_menu:
-		#Hub.lobby_menu.send_message_get_own_lobby()
-		#Hub.lobby_menu.signal_lobby_get_own.connect(_on_get_own_lobby)
-
+	if LobbySystem:
+		LobbySystem.signal_lobby_own_info.connect(_on_get_own_lobby)
 
 	if not animation_player:
 		animation_player = $AnimationPlayer
@@ -74,8 +72,6 @@ func _on_master_respawn():
 func _on_get_own_lobby(lobby):
 	for _this_player in lobby.players:
 		if int(_this_player.id) == int(player.name):
-			#var test = str_to_var(_this_player.color)
-			#print(type_string(typeof(test)))
 			var _color: Color = Color.from_string(_this_player.color, Color.BLUE)
 			set_mesh_color(_color)
 

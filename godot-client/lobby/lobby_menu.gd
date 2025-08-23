@@ -23,9 +23,6 @@ func _ready() -> void:
 	%InputUsername.max_length = 14
 	%InputUsername.text_changed.connect(func(new_text_value): username_value = new_text_value)
 	
-	%LobbyChatInput.text_submitted.connect(LobbySystem.lobby_send_chat)
-	%LobbyChatSend.pressed.connect(func (): LobbySystem.lobby_send_chat(%LobbyChatInput.text))
-	
 	%ColumnLobby.hide()
 	
 	# Renders
@@ -34,7 +31,6 @@ func _ready() -> void:
 	LobbySystem.signal_lobby_list_changed.connect(_render_lobby_list)
 	LobbySystem.signal_lobby_own_info.connect(_render_current_lobby_view)
 	LobbySystem.signal_user_list_changed.connect(_render_user_list)
-	LobbySystem.signal_lobby_chat.connect(_render_lobby_chat)
 	
 	# REACTIVITY
 	# Refetch user list and lobbies if anyone leaves or joins
@@ -55,7 +51,6 @@ func _render_user_list(users):
 		if user.has('username'):
 			var new_user = _new_user_item(user.username)
 			%UserList.add_child(new_user)
-
 
 func _new_user_item(username: String):
 	var user_label = Label.new()
@@ -89,18 +84,11 @@ func _render_lobby_list(lobbies):
 func _render_current_lobby_view(lobby):
 	%ColumnLobby.visible = false
 	%LobbyUserList.get_children().map(func(element):  element.queue_free())
-	%LobbyChat.clear()
-	
+
 	if lobby: 
 		%LabelLobbyTitle.text = lobby.players[0].username + "'s Lobby"
 		%ColumnLobby.visible = true
 		lobby.players.map(func(player): %LobbyUserList.add_child(_new_user_item(player.username)))
-
-func _render_lobby_chat(chat_user: String, chat_text: String):
-	%LobbyChatInput.clear()
-	%LobbyChat.append_text(chat_user + " : " + chat_text)
-	%LobbyChat.newline()
-	pass
 	
 func _render_connection_light(is_user_connected: bool = false):
 	%ConnectionLight.modulate = Color.WHITE

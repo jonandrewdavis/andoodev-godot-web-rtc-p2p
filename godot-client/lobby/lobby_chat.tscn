@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5bs8xlgxmi3q"]
+
+[ext_resource type="Script" uid="uid://ca7nq4unnss03" path="res://lobby/lobby_chat.gd" id="1_dphqa"]
+[ext_resource type="FontFile" uid="uid://bnudr3myap7vs" path="res://lobby/theme/Strait-Regular.ttf" id="1_qg0sw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ixe1"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.0706742, 0.07067422, 0.07067417, 0.47058824)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.23529412)
+
+[node name="LobbyChat" type="VBoxContainer"]
+size_flags_vertical = 3
+script = ExtResource("1_dphqa")
+
+[node name="V" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LobbyChat" type="RichTextLabel" parent="V"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("1_qg0sw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ixe1")
+scroll_following = true
+
+[node name="H" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LobbyChatInput" type="LineEdit" parent="H"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Chat"
+
+[node name="LobbyChatSend" type="Button" parent="H"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Send"
