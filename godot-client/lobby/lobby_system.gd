@@ -41,7 +41,8 @@ enum ACTION {
 const WEB_SOCKET_SERVER_URL = 'wss://typescript-websockets-lobby.jonandrewdavis.workers.dev'
 const WEB_SOCKET_SECRET_KEY = "9317e4d6-83b3-4188-94c4-353a2798d3c1"
 
-const STUN_TURN_SERVER_URL = 'stun.cloudflare.com'
+# Patterned [stun:URI, turn:URI], for now we just use free unlimited STUN
+const STUN_TURN_SERVER_URLS = ['stun:stun.cloudflare.com']
 
 var web_rtc_peer: WebRTCMultiplayerPeer
 
@@ -228,7 +229,7 @@ func _network_create_new_peer_connection(id: int):
 	if id != int(ws_peer_id):
 		var new_peer_connection: WebRTCPeerConnection = WebRTCPeerConnection.new()
 		new_peer_connection.initialize({
-			"iceServers" : [{ "urls": [STUN_TURN_SERVER_URL] }]
+			"iceServers" : [{ "urls": STUN_TURN_SERVER_URLS }]
 		})
 		print("binding id " + str(id) + " my id is " + str(ws_peer_id))
 

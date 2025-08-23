@@ -39,7 +39,7 @@ While WebRTC is indeed true, direct P2P, it's not easy to get the clients ready 
 
 ## Installation and Set up:
 
-Websockets server:
+### Websockets server:
 
 - Pre-req: node, npm, yarn
 - `npm install -g corepack`
@@ -50,19 +50,29 @@ Websockets server:
 - run `yarn`
 - run `yarn start`
 
-Godot Client:
-
-- Open Godot (4.5)
-- Import
-- Select `godot-client/project.godot`
-- Set 2 debug instances
-
 Cloudflare:
 
 - Fork this repo
 - Create a new worker & point it
 - Once read, update the `SECRET_KEY`
 - See [typescript-websockets-lobby README](typescript-websockets-lobby/README.md)
+
+### Godot Client:
+
+- Open Godot (4.5)
+- Import
+- Select `godot-client/project.godot`
+- Set 2 debug instances
+- Play
+
+Export to itch.io:
+
+- Create /dist
+- Export HTML5:
+  - make sure to enable extensions (webrtc folder has an extension in it...)
+  - Tell file name to be dist/index.html (helps because its in .gitingore)
+- upload zip or:
+- `butler push dist jonandrewitchio/andoodev-web-rtc-p2p:html5`
 
 ## Assets and Resources:
 
