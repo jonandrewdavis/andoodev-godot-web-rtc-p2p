@@ -3,7 +3,7 @@ extends Node3D
 var ammoDict : Dictionary = { #key = ammo type, value = ammo start number
 	"LightAmmo" : 9999,
 	"MediumAmmo" : 60,
-	"HeavyAmmo" : 9,
+	"HeavyAmmo" : 999,
 	"ShellAmmo" : 128,
 	"RocketAmmo" : 3,
 	"GrenadeAmmo" : 12

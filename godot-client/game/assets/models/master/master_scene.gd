@@ -70,7 +70,6 @@ func _on_master_respawn():
 		%vanguard_visor.cast_shadow = 3
 
 func _on_get_own_lobby(lobby):
-	print("MASTER GET:" ,lobby)
 	for _this_player in lobby.players:
 		if _this_player.id == player.name:
 			var _color: Color = Color.from_string(_this_player.color, Color.BLUE)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3dxuyvxuw4jg"
-path="res://.godot/imported/web-rtc-icon.png-dfb7935c857abfc95dabbbd75292a3e2.ctex"
+uid="uid://200vj7m28435"
+path="res://.godot/imported/andoo-webrtc-p2p-logo.png-99be0b574ae02ce8556930275a624b19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://web-rtc-icon.png"
-dest_files=["res://.godot/imported/web-rtc-icon.png-dfb7935c857abfc95dabbbd75292a3e2.ctex"]
+source_file="res://andoo-webrtc-p2p-logo.png"
+dest_files=["res://.godot/imported/andoo-webrtc-p2p-logo.png-99be0b574ae02ce8556930275a624b19.ctex"]
 
 [params]
 
