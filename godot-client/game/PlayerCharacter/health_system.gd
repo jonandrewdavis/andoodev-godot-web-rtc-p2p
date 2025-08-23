@@ -9,10 +9,6 @@ signal death
 signal respawn
 
 # TODO: HealthBars, do we want them to show on enemies? 
-# Helldivers 2 does not, but there are other indicators (bleeding, fatigue)
-# On a related note, could show small white damage numbers too...
-
-# TODO: could emit "MAJOR HURT" and "MINOR HURT" that the parent could react to
 
 @export var max_health : int = 100
 @export var health : int = 100

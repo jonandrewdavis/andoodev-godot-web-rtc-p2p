@@ -16,30 +16,29 @@ signal signal_lobby_game_started
 signal signal_network_create_new_peer_connection
 signal signal_packet_parsed(message)
 
-#region Actions
-# ACTIONS
-const Action_Confirm = "Confirm"
-const Action_GetUsers = "GetUsers"
-const Action_PlayerJoin = "PlayerJoin"
-const Action_PlayerLeft = "PlayerLeft"
-const Action_GetLobbies = "GetLobbies"
-const Action_GetOwnLobby = "GetOwnLobby"
-const Action_CreateLobby = "CreateLobby"
-const Action_JoinLobby = "JoinLobby"
-const Action_LeaveLobby = "LeaveLobby"
-const Action_LobbyChanged = "LobbyChanged"
-const Action_GameStarted = "GameStarted"
-const Action_MessageToLobby = "MessageToLobby"
-const Action_PlayerInfoUpdate = "PlayerInfoUpdate"
-# WebRTC Actions: 
-const Action_NewPeerConnection = "NewPeerConnection"
-const Action_Offer = "Offer"
-const Action_Answer = "Answer"
-const Action_Candidate = "Candidate"
-#endregion
+enum ACTION { 
+	Confirm,
+	GetUsers,
+	PlayerJoin,
+	PlayerLeft,
+	GetLobbies,
+	GetOwnLobby,
+	CreateLobby,
+	JoinLobby,
+	LeaveLobby,
+	LobbyChanged,
+	GameStarted,
+	MessageToLobby,
+	PlayerInfoUpdate,
+	# WebRTC Actions: 
+	NewPeerConnection,
+	Offer,
+	Answer,
+	Candidate
+}
 
-const WEB_SOCKET_SERVER_URL = 'ws://localhost:8787'
-#const WEB_SOCKET_SERVER_URL = 'wss://typescript-websockets-lobby.jonandrewdavis.workers.dev'
+#const WEB_SOCKET_SERVER_URL = 'ws://localhost:8787'
+const WEB_SOCKET_SERVER_URL = 'wss://typescript-websockets-lobby.jonandrewdavis.workers.dev'
 const WEB_SOCKET_SECRET_KEY = "9317e4d6-83b3-4188-94c4-353a2798d3c1"
 
 const STUN_TURN_SERVER_URL = 'stun:stun.l.google.com:19302'
@@ -96,53 +95,53 @@ func _ws_parse_packet():
 		push_warning("Invalid message from server received")		
 
 func _ws_process_packet(message):
-	match(message.action):
-		Action_Confirm:
-			# TODO: Rename "Action_Connect" to be "confirmed". It's sending us our peer id.
+	var string_enum = ACTION.keys().find(message.action)
+	match(string_enum):
+		ACTION.Confirm:
 			if  message.payload.has("webId"):
 				signal_client_connection_confirmed.emit(message.payload.webId)
 			else:
 				_ws_close_connection(1000, "Couldn't authenticate")
-		Action_GetUsers:
+		ACTION.GetUsers:
 			if message.payload.has("users"):
 				signal_user_list_changed.emit(message.payload.users)
 			else:
 				signal_user_list_changed.emit([])
-		Action_GetLobbies:
+		ACTION.GetLobbies:
 			if message.payload.has("lobbies"):
 				signal_lobby_list_changed.emit(message.payload.lobbies)
 			else:
 				signal_lobby_list_changed.emit([])
-		Action_GetOwnLobby:
+		ACTION.GetOwnLobby:
 			if message.payload.has("lobby"):
 				signal_lobby_own_info.emit(message.payload.lobby)
 			else:
 				signal_lobby_own_info.emit(null)
-		Action_PlayerJoin:
+		ACTION.PlayerJoin:
 			if message.payload.has("id"):
 				signal_user_joined.emit(message.payload.id)
-		Action_PlayerLeft:
+		ACTION.PlayerLeft:
 			if message.payload.has("webId"):
 				signal_user_left.emit(message.payload.webId)
-		Action_MessageToLobby:
+		ACTION.MessageToLobby:
 			if message.payload.has("message"): # TODO: "chat_text" ?
 				signal_lobby_chat.emit(message.payload.username, message.payload.message)
-		Action_GameStarted:
+		ACTION.GameStarted:
 			signal_lobby_game_started.emit()
-		Action_NewPeerConnection:
+		ACTION.NewPeerConnection:
 			if message.payload.has("id"):
 				signal_network_create_new_peer_connection.emit(int(message.payload.id))
-		Action_Offer:
+		ACTION.Offer:
 			web_rtc_peer.get_peer(int(message.payload.orgPeer)).connection.set_remote_description("offer", message.payload.data)
-		Action_Answer:
+		ACTION.Answer:
 			web_rtc_peer.get_peer(int(message.payload.orgPeer)).connection.set_remote_description("answer", message.payload.data)
-		Action_Candidate:
+		ACTION.Candidate:
 			web_rtc_peer.get_peer(int(message.payload.orgPeer)).connection.add_ice_candidate(message.payload.mid, message.payload.index, message.payload.sdp)
 
-func _ws_send_action(action: String, payload: Dictionary = {}):
+func _ws_send_action(action: ACTION, payload: Dictionary = {}):
 	if _is_web_socket_connected():
 		var message = {
-			"action": action,
+			"action": ACTION.keys()[action],
 			"payload": payload
 		}
 		var encoded_message: String = JSON.stringify(message)
@@ -168,16 +167,13 @@ func user_connect(username: String):
 # TODO: This should wait for a response from the server to confirm validate
 # Currently it still works because the server will boot connections that don't validate.
 func user_confirm_connection():
-	# TODO: Name this "CreateConnection" or something... change on backend...
-	# TODO: Remove Username, Color, do a follow up to add those values (set user data)	
-	_ws_send_action('Connect', {
+	_ws_send_action(ACTION.Confirm, {
 		"secretKey" : WEB_SOCKET_SECRET_KEY, 
 		"username" : current_username, 
-		"color": ''
 	})
 	ws_connection_validated = true
-	_ws_send_action(Action_GetUsers)
-	_ws_send_action(Action_GetLobbies)
+	_ws_send_action(ACTION.GetUsers)
+	_ws_send_action(ACTION.GetLobbies)
 	
 func user_disconnect():
 	current_username = ''
@@ -191,33 +187,33 @@ func user_disconnect():
 	
 
 func lobby_create():
-	_ws_send_action(Action_CreateLobby)
+	_ws_send_action(ACTION.CreateLobby)
 	pass
 
 func lobby_join(id: String):
-	_ws_send_action(Action_JoinLobby, { "id" : id })
+	_ws_send_action(ACTION.JoinLobby, { "id" : id })
 
 func lobby_leave():
-	_ws_send_action(Action_LeaveLobby)
+	_ws_send_action(ACTION.LeaveLobby)
 
 func lobby_get_own():
-	_ws_send_action(Action_GetOwnLobby)
+	_ws_send_action(ACTION.GetOwnLobby)
 
 func lobby_start_game():
-	_ws_send_action(Action_GameStarted)
+	_ws_send_action(ACTION.GameStarted)
 
 func users_get():
-	_ws_send_action(Action_GetUsers)
+	_ws_send_action(ACTION.GetUsers)
 
 func lobbies_get():
-	_ws_send_action(Action_GetLobbies)
+	_ws_send_action(ACTION.GetLobbies)
 	
 func lobby_send_chat(message: String):
 	if message.length():
-		_ws_send_action(Action_MessageToLobby, { "message": message })
+		_ws_send_action(ACTION.MessageToLobby, { "message": message })
 
 func user_update_color(color: String):
-	_ws_send_action(Action_PlayerInfoUpdate, {"color": color })
+	_ws_send_action(ACTION.PlayerInfoUpdate, {"color": color })
 	
 #region WebRTCMultiplayerPeer
 
@@ -259,7 +255,7 @@ func _sendOffer(id: int, data):
 		"orgPeer" : ws_peer_id,
 		"data": data,
 	}
-	_ws_send_action(Action_Offer, message)
+	_ws_send_action(ACTION.Offer, message)
 
 func _sendAnswer(id: int, data):
 	var message = {
@@ -267,7 +263,7 @@ func _sendAnswer(id: int, data):
 		"orgPeer" : ws_peer_id, 
 		"data": data,
 	}
-	_ws_send_action(Action_Answer, message)
+	_ws_send_action(ACTION.Answer, message)
 
 func _iceCandidateCreated(midName, indexName, sdpName, id: int):
 	var message = {
@@ -277,7 +273,7 @@ func _iceCandidateCreated(midName, indexName, sdpName, id: int):
 		"index": indexName,
 		"sdp": sdpName,
 	}
-	_ws_send_action(Action_Candidate, message)
+	_ws_send_action(ACTION.Candidate, message)
 
 #endregion
 

@@ -11,17 +11,12 @@ signal signal_player_death(id)
 signal signal_player_kill(id)
 
 ## TODO: 
-# - Name above player
-# - Color picker
 # - Reload weapons while dead
-# - Name messages (killed by X messages)?
-
+# - Log messages in-game (killed by X messages)?
 # - Add Melee 
 # - Add Sniper 
 # - Nerf or change how jump works?
 # - Document
-# - Re-brand to AndooDev (on youtube?)
-
 
 func _ready() -> void:
 	add_to_group('World')

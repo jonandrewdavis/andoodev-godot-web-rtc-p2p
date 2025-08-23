@@ -1,26 +1,19 @@
 export enum EAction {
-	Connect = 'Connect',
-
+	Confirm = 'Confirm',
 	GetUsers = 'GetUsers',
 	PlayerJoin = 'PlayerJoin',
 	PlayerLeft = 'PlayerLeft',
-
 	GetLobbies = 'GetLobbies',
 	GetOwnLobby = 'GetOwnLobby',
 	CreateLobby = 'CreateLobby',
 	JoinLobby = 'JoinLobby',
-	LobbyChanged = 'LobbyChanged',
 	LeaveLobby = 'LeaveLobby',
-
+	LobbyChanged = 'LobbyChanged',
 	GameStarted = 'GameStarted',
-
 	MessageToLobby = 'MessageToLobby',
-	Heartbeat = 'Heartbeat',
-
-	// NOTE: Added
-	NewPeerConnection = 'NewPeerConnection',
 	PlayerInfoUpdate = 'PlayerInfoUpdate',
-
+	// Web RTC
+	NewPeerConnection = 'NewPeerConnection',
 	Offer = 'Offer',
 	Answer = 'Answer',
 	Candidate = 'Candidate',

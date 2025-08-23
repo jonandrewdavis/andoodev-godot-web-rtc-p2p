@@ -62,6 +62,7 @@ func _process(_delta: float) -> void:
 	%LabelFPSCounter.text = 'FPS: ' + str(Engine.get_frames_per_second())
 
 func _on_hurt():
+	%HurtSound.play()
 	%HurtTexture.visible = true
 	%HurtTimer.start()
 
@@ -99,7 +100,6 @@ func _on_aim_changed(new_value: float):
 func _on_sound_changed(new_value:float):
 	AudioServer.set_bus_volume_linear(0, new_value)
 
-# TODO: Do not use Hub this way.
 func _on_disconnect():
 	if multiplayer != null && multiplayer.has_multiplayer_peer():
 		multiplayer.multiplayer_peer = null

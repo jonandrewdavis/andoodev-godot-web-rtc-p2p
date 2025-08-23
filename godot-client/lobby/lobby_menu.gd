@@ -97,5 +97,5 @@ func _render_connection_light(is_user_connected: bool = false):
 		%ConnectionLight.modulate = Color.GREEN
 
 func _debug(_message):
-	print(_message)
+	#print('[DEBUG LOBBY PACKET]: ', _message)
 	pass

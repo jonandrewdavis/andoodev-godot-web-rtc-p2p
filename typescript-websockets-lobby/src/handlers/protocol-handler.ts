@@ -64,7 +64,7 @@ export class ProtocolHelper {
 	) => {
 		try {
 			switch (message.action) {
-				case EAction.Connect:
+				case EAction.Confirm:
 					ProtocolHelper.connectToServer(gameServer, clientSocket, message, secretKey);
 					break;
 				case EAction.GetUsers:
@@ -120,7 +120,7 @@ export class ProtocolHelper {
 				LoggerHelper.logInfo(`Connection confirmed for ${clientSocket.id}`);
 
 				// Send response
-				const connectMessage: Message = new Message(EAction.Connect, {
+				const connectMessage: Message = new Message(EAction.Confirm, {
 					webId: clientSocket.id,
 				});
 				clientSocket.socket.send(connectMessage.toString());

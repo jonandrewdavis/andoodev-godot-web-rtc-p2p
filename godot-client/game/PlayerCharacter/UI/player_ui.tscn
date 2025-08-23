@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bodmr74jwgi5g"]
+[gd_scene load_steps=22 format=3 uid="uid://bodmr74jwgi5g"]
 
 [ext_resource type="Script" uid="uid://dbkd33tkoa5no" path="res://game/PlayerCharacter/UI/player_ui.gd" id="1_721h2"]
 [ext_resource type="Script" uid="uid://wbnqar1hyhh8" path="res://game/assets/ui/progress-bar/Scripts/progress_bar.gd" id="2_2npwm"]
@@ -13,6 +13,7 @@
 [ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://lobby/theme/MinimalUI.tres" id="9_xyb3v"]
 [ext_resource type="AudioStream" uid="uid://dfrym40wh1pg2" path="res://game/assets/sound/headshot_ping.mp3" id="10_fuqax"]
 [ext_resource type="PackedScene" uid="uid://b5bs8xlgxmi3q" path="res://lobby/lobby_chat.tscn" id="12_2lepv"]
+[ext_resource type="AudioStream" uid="uid://cw0fa6ee3vbax" path="res://game/assets/sound/hit-by-a-wood.mp3" id="13_pp4qo"]
 
 [sub_resource type="Gradient" id="Gradient_yswgc"]
 offsets = PackedFloat32Array(0.5034188, 0.9008547)
@@ -417,6 +418,11 @@ volume_db = 2.0
 [node name="HitSound" type="AudioStreamPlayer" parent="TopLevelControl"]
 unique_name_in_owner = true
 stream = ExtResource("9_3sa24")
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="TopLevelControl"]
+unique_name_in_owner = true
+stream = ExtResource("13_pp4qo")
+volume_db = -10.0
 
 [node name="CenterContainer" type="CenterContainer" parent="TopLevelControl"]
 layout_mode = 1
