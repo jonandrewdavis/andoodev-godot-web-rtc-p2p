@@ -37,16 +37,43 @@ While WebRTC is indeed true, direct P2P, it's not easy to get the clients ready 
 
 ![web_rtc_example](docs/web_rtc_example.png)
 
+## Installation and Set up:
+
+Websockets server:
+
+- Pre-req: node, npm, yarn
+- `npm install -g corepack`
+- (might need `yarn set version 4.5`)
+
+- Clone this repository
+- open `typescript-websockets-lobby`
+- run `yarn`
+- run `yarn start`
+
+Godot Client:
+
+- Open Godot (4.5)
+- Import
+- Select `godot-client/project.godot`
+- Set 2 debug instances
+
+Cloudflare:
+
+- Fork this repo
+- Create a new worker & point it
+- Once read, update the `SECRET_KEY`
+- See [typescript-websockets-lobby README](typescript-websockets-lobby/README.md)
+
 ## Assets and Resources:
 
-- https://github.com/Jeh3no/Godot-Simple-FPS-Weapon-System-Asset
-- https://github.com/godotengine/godot-demo-projects/tree/master/networking
+- FPS Weapons Demo: https://github.com/Jeh3no/Godot-Simple-FPS-Weapon-System-Asset (stripped down)
+- Godot Example project: https://github.com/godotengine/godot-demo-projects/tree/master/networking
 - Model by Mixamo: [Vanguard By T. Choonyung](https://www.mixamo.com/#/?page=1&type=Character)
 - Weapon Models by https://poly.pizza/m/1vBdqOfUNd https://x.com/quaternius
 - Special thanks to BatteryAcidDev https://www.youtube.com/@BatteryAcidDev
 - Special thanks to Netfox discord https://github.com/foxssake/netfox
 
-<sub><sup>TODO: detailed documentation of assets, strip resources</sup></sub>
+<sub><sup>TODO: detailed documentation of assets, strip resources. Note: LICENCE does not apply to these. I know how that's not how it works, but just what I've done temporarily, do not distribute, etc. etc. I'm new to open source, sorry.</sup></sub>
 
 Documentation:
 

@@ -4,6 +4,8 @@ This is a Typescript websockets server. It handles lobby creation and allows pee
 
 It is built and hosted on a Cloudflare worker.
 
+#### TODO: completely re-write in Go, preserving the API.
+
 ### Running locally
 
 Pre-requisite: [install yarn via corepack](https://yarnpkg.com/getting-started/install)
@@ -60,3 +62,7 @@ Installing project dependencies: yarn
 ```
 
 Solution: try: `yarn set version 4.5`
+
+### Resources:
+
+- Heavily adapted from: https://github.com/Hairic95/Godot-WebSocket-Multiplayer-Template
