@@ -266,6 +266,9 @@ properties/11/replication_mode = 2
 properties/12/path = NodePath("Nameplate:text")
 properties/12/spawn = true
 properties/12/replication_mode = 2
+properties/13/path = NodePath("Nameplate:visible")
+properties/13/spawn = true
+properties/13/replication_mode = 2
 
 [node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("player_input", "player_model", "health_system", "look_at_target", "player_ui")]
 collision_layer = 34

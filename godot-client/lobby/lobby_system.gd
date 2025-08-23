@@ -41,7 +41,7 @@ enum ACTION {
 const WEB_SOCKET_SERVER_URL = 'wss://typescript-websockets-lobby.jonandrewdavis.workers.dev'
 const WEB_SOCKET_SECRET_KEY = "9317e4d6-83b3-4188-94c4-353a2798d3c1"
 
-const STUN_TURN_SERVER_URL = 'stun:stun.l.google.com:19302'
+const STUN_TURN_SERVER_URL = 'stun.cloudflare.com'
 
 var web_rtc_peer: WebRTCMultiplayerPeer
 

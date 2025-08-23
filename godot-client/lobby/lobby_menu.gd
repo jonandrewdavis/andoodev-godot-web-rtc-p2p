@@ -13,7 +13,7 @@ func _ready() -> void:
 	]
 	buttons.map(func(button): button.set_default_cursor_shape(Control.CURSOR_POINTING_HAND))
 	
-	%ButtonConnect.pressed.connect(func(): LobbySystem.user_connect(username_value)) 
+	%ButtonConnect.pressed.connect(func(): _new_user_connect())
 	%ButtonDisconnect.pressed.connect(func(): LobbySystem.user_disconnect())
 	%ButtonLobbyCreate.pressed.connect(func(): LobbySystem.lobby_create())
 	%ButtonLobbyLeave.pressed.connect(func(): LobbySystem.lobby_leave())
@@ -43,6 +43,13 @@ func _ready() -> void:
 	
 	# Debug
 	LobbySystem.signal_packet_parsed.connect(_debug)
+
+func _new_user_connect():
+	if not username_value:
+		username_value = LobbySystem.generate_random_name()
+		%InputUsername.text = username_value
+
+	LobbySystem.user_connect(username_value)
 
 func _render_user_list(users):
 	%UserList.get_children().map(func(element):  element.queue_free())

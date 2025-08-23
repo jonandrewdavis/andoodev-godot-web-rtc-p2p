@@ -160,7 +160,7 @@ func hitscanShot(pointOfCollisionHitscan : Vector3):
 func projectileShot(pointOfCollisionProjectile : Vector3):
 	#set up weapon shot sprad 
 	var spread = Vector3(weapM.rng.randf_range(cW.minSpread, cW.maxSpread), weapM.rng.randf_range(cW.minSpread, cW.maxSpread), weapM.rng.randf_range(cW.minSpread, cW.maxSpread))
-	var source = get_multiplayer_authority()
+	var _source = get_multiplayer_authority()
 
 	#Calculate direction of the projectile
 	var projectileDirection = ((pointOfCollisionProjectile - cW.weSl.attackPoint.get_global_transform().origin).normalized() + spread)
@@ -184,7 +184,9 @@ func projectileShot(pointOfCollisionProjectile : Vector3):
 	if hitscanBulletCollision.has('normal'):
 		_normal = hitscanBulletCollision.normal
 
+	# TODO: Projectiles coming soon. 
+	
 	# NOTE: Networked version - AD
-	var projInstanceName = cW.projRef.get_state().get_node_name(0)
-	var cWArray = [cW.weSl.attackPoint.global_transform,  cW.damagePerProj, cW.projTimeBeforeVanish, cW.projGravityVal, cW.isProjExplosive, cW.projMoveSpeed]
+	var _projInstanceName = cW.projRef.get_state().get_node_name(0)
+	var _cWArray = [cW.weSl.attackPoint.global_transform,  cW.damagePerProj, cW.projTimeBeforeVanish, cW.projGravityVal, cW.isProjExplosive, cW.projMoveSpeed]
 	#Hub.projectile_system.add_new_projectile.rpc(cWArray, projectileDirection, projInstanceName, _normal, source)

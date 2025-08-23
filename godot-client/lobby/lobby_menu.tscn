@@ -103,6 +103,7 @@ texture = SubResource("GradientTexture2D_26th1")
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "Username"
+clear_button_enabled = true
 
 [node name="H2" type="HBoxContainer" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin"]
 layout_mode = 2

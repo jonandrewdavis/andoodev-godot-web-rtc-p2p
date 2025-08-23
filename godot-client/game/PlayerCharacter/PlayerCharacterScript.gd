@@ -9,7 +9,7 @@ class_name PlayerCharacter
 @export var immobile: bool = false
 @export var look_at_target: Marker3D
 @export var player_ui: PlayerUI
-
+@onready var nameplate = %Nameplate
 
 signal signal_hit_success(headshot)
 
@@ -144,13 +144,15 @@ func gravityApply(delta : float):
 	elif velocity.y < 0.0: velocity.y += fallGravity * delta
 
 func hitscanHit(damageVal : float, _hitscanDir : Vector3, _hitscanPos : Vector3, source = 1):
-	var damage_successful = health_system.damage(damageVal, source)
+	@warning_ignore("narrowing_conversion")
+	var _damage_successful = health_system.damage(damageVal, source)
 	#if damage_successful:
 		##Hub.emit_signal('hit')
 
 func projectileHit(damageVal : float, _hitscanDir : Vector3, source = 1):
 	# TODO: Projectile source & physics
-	var damage_successful = health_system.damage(damageVal, source)
+	@warning_ignore("narrowing_conversion")
+	var _damage_successful = health_system.damage(damageVal, source)
 	#if damage_successful:
 		#Hub.emit_signal('hit')
 

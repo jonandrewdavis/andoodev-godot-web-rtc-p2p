@@ -32,7 +32,8 @@ func _on_death():
 	
 	world.broadcast_player_death.rpc(player.name)
 	world.broadcast_player_kill.rpc(str(health_system.last_damage_source))
-	
+	player.nameplate.visible = false
+
 	await get_tree().create_timer(5.0).timeout
 	_respawn()
 	
@@ -44,6 +45,7 @@ func _respawn():
 	player.immobile = false
 	player.position = Vector3(randi_range(-2, 2), 0.8, randi_range(-2, 2)) * 8
 	player.toggle_weapon_visible(true)	
+	player.nameplate.visible = true
 	
 	#var linkToAmmoRefill = player.get_node("LinkComponent")
 	#if linkToAmmoRefill != null:
