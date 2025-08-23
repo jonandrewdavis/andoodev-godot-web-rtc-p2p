@@ -485,8 +485,6 @@ metadata/_custom_type_script = "uid://dvu58wf01wils"
 script = ExtResource("20_r08p1")
 metadata/_custom_type_script = "uid://bh3rdvokmrar1"
 
-[node name="PlayerUI" parent="." instance=ExtResource("21_4hhey")]
-
 [node name="PlayerInput" type="Node" parent="."]
 script = ExtResource("22_6hm04")
 
@@ -513,3 +511,5 @@ text = "Andrew "
 font = ExtResource("32_agnd3")
 font_size = 10
 outline_size = 4
+
+[node name="PlayerUI" parent="." instance=ExtResource("21_4hhey")]

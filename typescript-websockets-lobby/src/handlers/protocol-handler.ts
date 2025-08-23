@@ -88,6 +88,9 @@ export class ProtocolHelper {
 				case EAction.Heartbeat:
 					ProtocolHelper.processHeartbeat(gameServer, clientSocket);
 					break;
+				case EAction.PlayerInfoUpdate:
+					ProtocolHelper.playerUpdateInfo(gameServer, clientSocket, message);
+					break;
 				case EAction.MessageToLobby:
 					ProtocolHelper.sendMessageToLobby(gameServer, clientSocket, message);
 					break;
@@ -344,6 +347,19 @@ export class ProtocolHelper {
 				id: next_player_id,
 			});
 			clientSocket.socket.send(newPeerConnection.toString());
+		} catch (err: any) {
+			LoggerHelper.logError(`[ProtocolHelper.sendnewPeerConnection()] An error had occurred while parsing a message: ${err}`);
+		}
+	}
+
+	// NEW: TODO: should basically spread whatever info we give it... "meta" property for generic usage?
+	public static playerUpdateInfo(_gameServer: GameServerHandler, clientSocket: ClientSocket, message: Message) {
+		try {
+			console.log(message.payload.color);
+			if (message.payload.color) {
+				clientSocket.color = message.payload.color;
+			}
+			// clientSocket.socket.send(newPeerConnection.toString());
 		} catch (err: any) {
 			LoggerHelper.logError(`[ProtocolHelper.sendnewPeerConnection()] An error had occurred while parsing a message: ${err}`);
 		}

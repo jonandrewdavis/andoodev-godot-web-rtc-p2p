@@ -14,12 +14,11 @@ signal signal_lobby_own_info(lobby)
 signal signal_lobby_game_started
 
 signal signal_network_create_new_peer_connection
-
 signal signal_packet_parsed(message)
 
 #region Actions
 # ACTIONS
-const Action_Connect = "Connect"
+const Action_Confirm = "Confirm"
 const Action_GetUsers = "GetUsers"
 const Action_PlayerJoin = "PlayerJoin"
 const Action_PlayerLeft = "PlayerLeft"
@@ -29,12 +28,9 @@ const Action_CreateLobby = "CreateLobby"
 const Action_JoinLobby = "JoinLobby"
 const Action_LeaveLobby = "LeaveLobby"
 const Action_LobbyChanged = "LobbyChanged"
-const Action_GetUsersInLobby = "GetUsersInLobby"
-const Action_MapSelected = "MapSelected"
 const Action_GameStarted = "GameStarted"
 const Action_MessageToLobby = "MessageToLobby"
-const Action_Heartbeat = "Heartbeat"
-
+const Action_PlayerInfoUpdate = "PlayerInfoUpdate"
 # WebRTC Actions: 
 const Action_NewPeerConnection = "NewPeerConnection"
 const Action_Offer = "Offer"
@@ -42,8 +38,8 @@ const Action_Answer = "Answer"
 const Action_Candidate = "Candidate"
 #endregion
 
-#const WEB_SOCKET_SERVER_URL = 'ws://localhost:8787'
-const WEB_SOCKET_SERVER_URL = 'wss://typescript-websockets-lobby.jonandrewdavis.workers.dev'
+const WEB_SOCKET_SERVER_URL = 'ws://localhost:8787'
+#const WEB_SOCKET_SERVER_URL = 'wss://typescript-websockets-lobby.jonandrewdavis.workers.dev'
 const WEB_SOCKET_SECRET_KEY = "9317e4d6-83b3-4188-94c4-353a2798d3c1"
 
 const STUN_TURN_SERVER_URL = 'stun:stun.l.google.com:19302'
@@ -101,7 +97,7 @@ func _ws_parse_packet():
 
 func _ws_process_packet(message):
 	match(message.action):
-		Action_Connect:
+		Action_Confirm:
 			# TODO: Rename "Action_Connect" to be "confirmed". It's sending us our peer id.
 			if  message.payload.has("webId"):
 				signal_client_connection_confirmed.emit(message.payload.webId)
@@ -220,6 +216,9 @@ func lobby_send_chat(message: String):
 	if message.length():
 		_ws_send_action(Action_MessageToLobby, { "message": message })
 
+func user_update_color(color: String):
+	_ws_send_action(Action_PlayerInfoUpdate, {"color": color })
+	
 #region WebRTCMultiplayerPeer
 
 

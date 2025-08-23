@@ -5,6 +5,9 @@ signal color_grid_changed(value)
 var colors = [Color.WHITE, Color.DEEP_PINK, Color.CYAN, Color.BLUE_VIOLET, Color.ROYAL_BLUE, Color.CORAL, Color.FOREST_GREEN, Color.CRIMSON, Color.GOLD]
 
 func _ready() -> void:
+	if LobbySystem:
+		LobbySystem.signal_client_connection_confirmed.connect(func(_id): choose_random_color())
+	
 	var new_toggle_group = ButtonGroup.new()
 
 	for color_string: Color in colors:
@@ -27,13 +30,14 @@ func _ready() -> void:
 		new_button.mouse_default_cursor_shape = 2
 		%ColorGrid.add_child(new_button)
 		
-	await get_tree().create_timer(0.1).timeout	
+func choose_random_color():
 	var random_color = randi_range(0, colors.size() - 1)
 	var first_color: Button = %ColorGrid.get_child(random_color)
 	first_color.set_pressed_no_signal(true)
 	choose_color(true, colors[random_color])
 	
 func choose_color(toggled_on, color_string: Color):
-	if toggled_on:
+	if toggled_on and LobbySystem:
+		LobbySystem.user_update_color(color_string.to_html())
 		color_grid_changed.emit(color_string.to_html())
 		%ColorRect.color = color_string

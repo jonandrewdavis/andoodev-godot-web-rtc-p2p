@@ -11,6 +11,9 @@ var _player_input: PlayerInput
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if LobbySystem:
+		LobbySystem.signal_lobby_own_info.connect(_on_get_own_lobby)
+
 	if not is_multiplayer_authority():
 		set_process(false)
 		set_physics_process(false)
@@ -24,9 +27,6 @@ func _ready() -> void:
 	
 	#weapon_manager.player = player
 	#weapon_manager.player_input = player.player_input
-
-	if LobbySystem:
-		LobbySystem.signal_lobby_own_info.connect(_on_get_own_lobby)
 
 	if not animation_player:
 		animation_player = $AnimationPlayer
@@ -70,8 +70,9 @@ func _on_master_respawn():
 		%vanguard_visor.cast_shadow = 3
 
 func _on_get_own_lobby(lobby):
+	print("MASTER GET:" ,lobby)
 	for _this_player in lobby.players:
-		if int(_this_player.id) == int(player.name):
+		if _this_player.id == player.name:
 			var _color: Color = Color.from_string(_this_player.color, Color.BLUE)
 			set_mesh_color(_color)
 

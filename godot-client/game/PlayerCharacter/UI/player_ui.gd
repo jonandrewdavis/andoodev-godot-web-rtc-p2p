@@ -48,7 +48,6 @@ func _ready() -> void:
 	%LobbyChatFadeTimer.timeout.connect(_render_lobby_chat_fade)
 
 	LobbySystem.signal_lobby_own_info.connect(_render_own_lobby_info)
-	LobbySystem.lobby_get_own()
 
 	world = get_tree().get_first_node_in_group("World")
 	world.signal_player_death.connect(add_death_to_player)
@@ -154,7 +153,7 @@ func _render_own_lobby_info(lobby):
 		
 		var new_player_item = Instantiate.scene(PlayerInfoItem)
 		new_player_item.name = _player.id 
-		new_player_item.set_user_data(_player.username, Color.WEB_PURPLE.to_html())
+		new_player_item.set_user_data(_player.username, _player.color)
 		%LobbyScoreboard.add_child(new_player_item, true)
 
 func add_death_to_player(playerId: String):

@@ -13,7 +13,6 @@ var world: World
 	#'ShellAmmo': 20,
 #}
 
-
 # TODO: Remove.
 
 # Called when the node enters the scene tree for the first time.

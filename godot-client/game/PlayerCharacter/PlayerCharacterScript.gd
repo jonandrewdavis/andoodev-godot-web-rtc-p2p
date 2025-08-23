@@ -124,6 +124,10 @@ func _ready():
 	nbJumpsInAirAllowedRef = nbJumpsInAirAllowed
 	coyoteJumpCooldownRef = coyoteJumpCooldown
 	
+	
+	LobbySystem.lobby_get_own()
+
+	
 func _physics_process(_delta : float):
 	modifyPhysicsProperties()
 	move_and_slide()
