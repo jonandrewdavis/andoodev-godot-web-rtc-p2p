@@ -36,6 +36,7 @@ func RTCPeerConnected(id: int):
 	
 func RTCPeerDisconnected(id):
 	print("WORLD: rtc peer disconnected " + str(id))
+	remove_player_from_game(id)
 
 func add_player_to_game(id: int):
 	var has_id = id in player_container.get_children().map(func(node): int(node.name))
@@ -55,3 +56,6 @@ func broadcast_player_death(id: String):
 @rpc("any_peer", 'call_local', 'reliable')
 func broadcast_player_kill(id: String):
 	signal_player_kill.emit(id)
+
+func remove_player_from_game(id):
+	player_container.get_node(str(id)).queue_free()

@@ -50,7 +50,6 @@ var mouseFree : bool = false
 @onready var playChar : PlayerCharacter = $".."
 @onready var weaponManager : Node3D = %WeaponManager
 
-
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) #set mouse as captured
 	

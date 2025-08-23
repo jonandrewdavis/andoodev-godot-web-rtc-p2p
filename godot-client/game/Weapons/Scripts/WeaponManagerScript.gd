@@ -68,9 +68,9 @@ func initialize():
 				cWM = cW.weSl.model
 				cWM.visible = false
 				
-				if is_multiplayer_authority():
-					forceAttackPointTransformValues(cW.weSl.attackPoint)
-					cW.bobPos = cW.position
+				#if is_multiplayer_authority():
+				forceAttackPointTransformValues(cW.weSl.attackPoint)
+				cW.bobPos = cW.position
 				
 	if weaponStack.size() > 0:
 		#enable (equip and set up) the first weapon on the weapon stack

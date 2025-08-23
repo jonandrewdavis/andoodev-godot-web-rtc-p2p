@@ -40,6 +40,7 @@ SECRET_KEY="____YOUR_RANDOM_SECRET_KEY____"
 - Name the project: `typescript-websockets-lobby`
 - Open Advanced settings
 - Update root directory path to: `typescript-websockets-lobby/`
+- Note: no need to update watched files, the root is sufficient
 
 - Once done build is complete, go to Settings:
   - Variables and Secrets

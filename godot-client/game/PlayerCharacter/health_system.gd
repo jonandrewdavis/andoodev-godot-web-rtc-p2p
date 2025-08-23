@@ -46,7 +46,7 @@ func damage(value: int, source: int = 0) -> bool:
 	_damage_sync.rpc_id(int(get_parent().name), value, source)
 	return true
 
-@rpc('any_peer')
+@rpc('any_peer', 'reliable')
 func _damage_sync(value, source):
 	# Don't allow negative values when damaging
 	var next_health = health - abs(value)

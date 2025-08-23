@@ -51,7 +51,7 @@ func _physics_process(_delta: float) -> void:
 	is_weapon_shoot = Input.is_action_pressed("weapon_shoot") # (Note: Special case for browsers, uses "P")
 	is_weapon_melee = Input.is_action_pressed("weapon_melee")
 	is_weapon_reload = Input.is_action_pressed("weapon_reload")
-	#is_weapon_aim = Input.is_action_pressed("weapon_aim")
+	is_weapon_aim = Input.is_action_pressed("weapon_aim")
 	is_debug_b = Input.is_action_pressed("debug_b")
 
 func _process(_delta):
@@ -67,11 +67,6 @@ func _unhandled_input(event: InputEvent):
 		mouseInput.y += event.relative.y
 
 	if event is InputEventMouseButton:		
-		if event.button_index == 2 and event.pressed == true:
-			is_weapon_aim = true # Right Click: Aim (context_menu in browsers messes this up...)
-		elif (event.button_index == 2 and event.pressed == false):
-			is_weapon_aim = false
-		
 		if event.button_index == 4 and event.pressed == true:
 			is_weapon_up = true
 		elif event.button_index == 5 and event.pressed == true:
