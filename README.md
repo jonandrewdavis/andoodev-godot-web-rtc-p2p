@@ -20,6 +20,16 @@ This is it. `andoodev-godot-web-rtc-p2p` is a complete peer-to-peer multiplayer 
 | :----------------------------: | :----------------------------: |
 | ![](docs/web_rtc_screen_1.png) | ![](docs/web_rtc_screen_2.png) |
 
+## How to:
+
+- Link to game: https://jonandrewitchio.itch.io/andoodev-web-rtc-p2p
+- Connect
+- Create Lobby
+- Send your friend the same link
+- They join
+- Start game (requires at least 2 players)
+- (you can even have players join in-progress)
+
 ## Godot P2P with WebRTC
 
 [WebRTC](https://webrtc.org/) is a connection protocol that allows direct peer-to-peer transfer for video, audio, and of course, games! (Zoom and other tech is built on it.) One of the most common problems with multiplayer is NAT or Firewall punchthrough. Today's routers have modern rules that make it difficult to connect and expose traffic, especially for UDP and realtime gaming. Most solutions rely on:
