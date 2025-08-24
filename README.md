@@ -22,7 +22,7 @@ This is it. `andoodev-godot-web-rtc-p2p` is a complete peer-to-peer multiplayer 
 
 ## How to:
 
-- Link to game: https://jonandrewitchio.itch.io/andoodev-web-rtc-p2p
+- Link to game: https://jonandrewitchio.itch.io/andoodev-web-rtc-p2p (Chrome loads fastest)
 - Connect
 - Create Lobby
 - Send your friend the same link
