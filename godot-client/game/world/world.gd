@@ -12,11 +12,10 @@ signal signal_player_kill(id)
 
 ## TODO: 
 # - Reload weapons while dead
-# - Log messages in-game (killed by X messages)?
+# - Log messages in-game (killed by X messages)? (upper right corner)
 # - Add Melee 
-# - Add Sniper 
 # - Nerf or change how jump works?
-# - Document
+# - Disconnect button hide/show game world. unmount wolrd, show
 
 func _ready() -> void:
 	add_to_group('World')

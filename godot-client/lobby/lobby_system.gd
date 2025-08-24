@@ -218,7 +218,6 @@ func user_update_color(color: String):
 	
 #region WebRTCMultiplayerPeer
 
-
 func _network_create_multiplayer_peer(id: String):
 	ws_peer_id = id
 	web_rtc_peer = WebRTCMultiplayerPeer.new()

@@ -266,15 +266,45 @@ export class ProtocolHelper {
 						ProtocolHelper.sendLobbyChanged(el, lobbyToJoin);
 					});
 
-					// TODO: Remove - AD
-					// if (lobbyToJoin.players.length >= 2 && !lobbyToJoin.isGameStarted) {
-					//   setTimeout(() => {
-					//     lobbyToJoin.isGameStarted = true;
-					//     lobbyToJoin.players.forEach((el) => {
-					//       ProtocolHelper.sendGameStarted(el);
-					//     });
-					//   }, 1000);
-					// }
+					// THIS IS DROP IN:  Join
+
+					// Step 1: Send existing players to new player
+					// Step 2: send new player to all existing players
+
+					if (lobbyToJoin.players.length >= 2 && lobbyToJoin.isGameStarted) {
+						setTimeout(() => {
+							var new_player_client = clientSocket;
+							// New player gets all lobby:
+							for (const next_player of lobbyToJoin.players) {
+								if (new_player_client.id !== next_player.id) {
+									ProtocolHelper.sendNewPeerConnection(new_player_client, next_player.id);
+								}
+							}
+
+							lobbyToJoin.players.forEach((player) => {
+								// Start
+								// Share all about the new player via new sendNewPeerConnection
+								var player_client: ClientSocket = player;
+								if (new_player_client.id !== player_client.id) {
+									ProtocolHelper.sendNewPeerConnection(player_client, new_player_client.id);
+								}
+							});
+
+							// // New player
+							// clientSocket
+							// lobbyToJoin.players.forEach((player) => {
+							// 	// Start
+							// 	// Share all new sendNewPeerConnection
+							// 	var player_client: ClientSocket = player;
+							// 	var current_player_id: string = player.id;
+							// 	for (const next_player of lobbyToStart.players) {
+							// 		if (current_player_id !== next_player.id) {
+							// 			ProtocolHelper.sendNewPeerConnection(player_client, next_player.id);
+							// 		}
+							// 	}
+							// });
+						}, 1000);
+					}
 				}
 			} else {
 				const joinLobbyFailureMessage = new Message(EAction.JoinLobby, {
@@ -313,7 +343,7 @@ export class ProtocolHelper {
 						lobbyToStart.isGameStarted = true;
 						lobbyToStart.players.forEach((player) => {
 							// Start
-							ProtocolHelper.sendGameStarted(player);
+							ProtocolHelper.sendGameStarted(player); // Note we do not lsiten to this in the client
 
 							// Share all new sendNewPeerConnection
 							var player_client: ClientSocket = player;

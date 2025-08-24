@@ -29,7 +29,7 @@ This is it. `andoodev-godot-web-rtc-p2p` is a complete peer-to-peer multiplayer 
 
 WebRTC uses neither of these\*\*! Instead, it uses "Session Traversal Utilities for NAT" (STUN), to establish a direct connection between two clients [source](https://developer.liveswitch.io/liveswitch-server/guides/what-are-stun-turn-and-ice.html). Once connected, the clients are good to swap UDP packets directly and they're off to the races! No server needed after that! Godot supports this as [WebRTCMultiplayerPeer](https://docs.godotengine.org/en/4.4/classes/class_webrtcmultiplayerpeer.html#class-webrtcmultiplayerpeer), a drop in replacement for `ENetMultiplayerPeer`.
 
-<sub><sup>\*\* STUN is used in like 97% of cases, but TURN may relay with older connections involved, some mobile 3G, etc.</sup></sub>
+<sub><sup>\*\* STUN is used in like 97% of cases, but TURN may relay with older connections involved, some mobile 3G, etc. See footnotes.</sup></sub>
 
 ## The Signaling Server
 
@@ -37,7 +37,28 @@ While WebRTC is indeed true, direct P2P, it's not easy to get the clients ready 
 
 ![web_rtc_example](docs/web_rtc_example.png)
 
-## Installation and Set up:
+## Feature List
+
+- Fully featured `LobbySystem`
+- User list, browse lobbies, join, create,
+- Lobby chat
+- Map selector (in progress)
+
+## Future Features
+
+Future plans are to make a "single click" version suited for Game Jam usage. Perhaps 3 buttons
+
+- Quick Host - Creates a lobby code
+- Quick Join - Paste in a lobby code to join a match
+- Start Game
+
+I'll also be re-writing the Typescript server in Go in the coming weeks because I need to learn it for work and the Typescript code is not very resilient.
+
+Another plan:
+
+- Include a small 2D game, like a tank battler or survivors-like
+
+# Installation and Set up:
 
 ### Websockets server:
 
@@ -50,7 +71,7 @@ While WebRTC is indeed true, direct P2P, it's not easy to get the clients ready 
 - run `yarn`
 - run `yarn start`
 
-Cloudflare:
+##### Cloudflare:
 
 - Fork this repo
 - Create a new worker & point it
@@ -65,7 +86,7 @@ Cloudflare:
 - Set 2 debug instances
 - Play
 
-Export to itch.io:
+##### Export to itch.io:
 
 - Create /dist
 - Export HTML5:
@@ -74,21 +95,27 @@ Export to itch.io:
 - upload zip or:
 - `butler push dist jonandrewitchio/andoodev-web-rtc-p2p:html5`
 
-## Assets and Resources:
+## Assets, Resources, and Thanks!:
 
 - FPS Weapons Demo: https://github.com/Jeh3no/Godot-Simple-FPS-Weapon-System-Asset (stripped down)
 - Godot Example project: https://github.com/godotengine/godot-demo-projects/tree/master/networking
 - Model by Mixamo: [Vanguard By T. Choonyung](https://www.mixamo.com/#/?page=1&type=Character)
 - Weapon Models by https://poly.pizza/m/1vBdqOfUNd https://x.com/quaternius
+- Awesome Map by skywalk1411 - https://kirka.lukeskywalk.com/mapeditor/
 - Special thanks to BatteryAcidDev https://www.youtube.com/@BatteryAcidDev
 - Special thanks to Netfox discord https://github.com/foxssake/netfox
 
-<sub><sup>TODO: detailed documentation of assets, strip resources. Note: LICENCE does not apply to these. I know how that's not how it works, but just what I've done temporarily, do not distribute, etc. etc. I'm new to open source, sorry.</sup></sub>
+<sub><sup>TODO: detailed documentation of assets, strip resources, sounds (https://pixabay.com/sound-effects is the sound source, but ned to doc). Note: LICENCE in this repo does not apply to these. I know how that's not how it works, but just what I've done temporarily, do not distribute, etc. etc. I'm new to open source, sorry, work in progres, please contact if there any issues.</sup></sub>
 
-Documentation:
+## Contributing
+
+Best way to contribute would be assets & sounds, to help make this project more open-source friendly. Looking for collaborators on 3D multiplayer games! Reach out!
+
+## Helpful Documentation:
 
 - https://docs.godotengine.org/en/4.4/classes/class_webrtcmultiplayerpeer.html
 - https://developer.mozilla.org/en-US/docs/Glossary/WebRTC
+- https://developer.liveswitch.io/liveswitch-server/guides/what-are-stun-turn-and-ice.html
 
 ## STUN and TURN
 
