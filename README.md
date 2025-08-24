@@ -8,13 +8,13 @@
 
 ## Realtime peer-to-peer, no server, no issues
 
-> ### Have you ever wanted to simply join a multiplayer game with friends? Have 2 people just run the game & instantly connect?
+> ### Have you ever wanted to simply join a multiplayer game with friends? Have 2 or more people just run the game & instantly connect?
 
 - No issues.
 - No server.
 - In a browser.
 
-This is it. `andoodev-godot-web-rtc-p2p` is a complete peer-to-peer multiplayer Godot project. It features a full lobby system (in Websockets) and demo FPS game. It even runs in the browser. It's the perfect way to do multiplayer for game jams or other lightweight projects.
+This is it. `andoodev-godot-web-rtc-p2p` is a complete peer-to-peer multiplayer Godot project. It features a full lobby system (in Websockets) and demo FPS game with drop-in-drop-out mesh networking. It even runs in the browser. It's the perfect way to do multiplayer for game jams or other lightweight projects.
 
 |             Lobby              |            In Game             |
 | :----------------------------: | :----------------------------: |
@@ -40,9 +40,23 @@ While WebRTC is indeed true, direct P2P, it's not easy to get the clients ready 
 ## Feature List
 
 - Fully featured `LobbySystem`
-- User list, browse lobbies, join, create,
+- Current user list
+- Lobby list
+- Join, create, leave lobbies
 - Lobby chat
-- Map selector (in progress)
+- Color picker
+
+##### First Person Shooter Demo
+
+- Leaderboard
+- In Game Chat
+- Drop-in, Drop-out joining (quit, rejoin, etc.)
+- 2 weapons
+- Sounds, hit registration
+- Projectile spawning (in-progress)
+- Map Selector (in-progress)
+- 3rd person option (present, but in-progress)
+- Add grenades, explosives, more ragdolls, melee attacks
 
 ## Future Features
 
@@ -54,7 +68,7 @@ Future plans are to make a "single click" version suited for Game Jam usage. Per
 
 I'll also be re-writing the Typescript server in Go in the coming weeks because I need to learn it for work and the Typescript code is not very resilient.
 
-Another plan:
+Other plans:
 
 - Include a small 2D game, like a tank battler or survivors-like
 
