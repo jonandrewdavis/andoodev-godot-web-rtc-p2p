@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bwggrf7sbmkcv"]
+[gd_scene load_steps=44 format=3 uid="uid://bwggrf7sbmkcv"]
 
 [ext_resource type="Script" uid="uid://d3s8yxuvpmekm" path="res://game/PlayerCharacter/PlayerCharacterScript.gd" id="1_oog1p"]
 [ext_resource type="Script" uid="uid://11klj8n5vpt0" path="res://game/PlayerCharacter/hitbox_head.gd" id="2_tmkws"]
@@ -26,6 +26,7 @@
 [ext_resource type="Animation" uid="uid://da8giy5xi51oa" path="res://game/assets/weapons/sniper/UnequipAnimSniperRifle.res" id="19_myxxu"]
 [ext_resource type="Script" uid="uid://dvu58wf01wils" path="res://game/PlayerCharacter/StateMachine/JumpStateScript.gd" id="19_x7qnf"]
 [ext_resource type="Script" uid="uid://bh3rdvokmrar1" path="res://game/PlayerCharacter/StateMachine/InairStateScript.gd" id="20_r08p1"]
+[ext_resource type="PackedScene" uid="uid://ob7g0u3halqf" path="res://game/Weapons/Misc/Scenes/MuzzleFlash.tscn" id="20_vraf3"]
 [ext_resource type="PackedScene" uid="uid://bodmr74jwgi5g" path="res://game/PlayerCharacter/UI/player_ui.tscn" id="21_4hhey"]
 [ext_resource type="Script" uid="uid://b444whi1t4ggg" path="res://game/PlayerCharacter/player_input.gd" id="22_6hm04"]
 [ext_resource type="Script" uid="uid://cyuq81eounly0" path="res://game/PlayerCharacter/gameplay.gd" id="23_ltjnr"]
@@ -237,17 +238,17 @@ properties/2/path = NodePath("HealthSystem:health")
 properties/2/spawn = true
 properties/2/replication_mode = 2
 properties/3/path = NodePath("PlayerInput:input_dir")
-properties/3/spawn = true
-properties/3/replication_mode = 1
+properties/3/spawn = false
+properties/3/replication_mode = 0
 properties/4/path = NodePath("PlayerInput:is_jumping")
-properties/4/spawn = true
-properties/4/replication_mode = 1
+properties/4/spawn = false
+properties/4/replication_mode = 0
 properties/5/path = NodePath("PlayerInput:is_sprinting")
-properties/5/spawn = true
-properties/5/replication_mode = 1
+properties/5/spawn = false
+properties/5/replication_mode = 0
 properties/6/path = NodePath("PlayerInput:is_crouching")
-properties/6/spawn = true
-properties/6/replication_mode = 1
+properties/6/spawn = false
+properties/6/replication_mode = 0
 properties/7/path = NodePath("CameraHolder:rotation:y")
 properties/7/spawn = true
 properties/7/replication_mode = 1
@@ -300,12 +301,10 @@ walkDeccel = 9.0
 runSpeed = 6.5
 runAccel = 8.0
 runDeccel = 7.0
-jumpHeight = 2.1999999999970896
-jumpTimeToPeak = 0.6000000000058208
-jumpTimeToFall = 0.4000000000087311
-jumpCooldown = 0.2
-coyoteJumpCooldown = 0.2
-inAirInputMultiplier = 0.2
+jumpHeight = 2.400000000008731
+jumpTimeToPeak = 0.6999999999970896
+jumpTimeToFall = 0.40000000000873115
+inAirInputMultiplier = 0.05
 moveForwardAction = "up"
 moveBackwardAction = "down"
 moveLeftAction = "left"
@@ -393,7 +392,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.78936e-08, 0.154984, 0.541926)
 
 [node name="PistolMuzzleFlashSpawner" type="Marker3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager/WeaponContainer/Pistol/PistolModel"]
-transform = Transform3D(1, 0, -4.54747e-13, 0, 1, 0, 0, 0, 1, -1.19209e-07, 0.065257, 0.568656)
+transform = Transform3D(1, -2.7830284e-12, -4.5474735e-13, -2.7830281e-12, 1, -1.1368684e-13, 0, 0, 1, 0, 0.065256685, 0.7325743)
 
 [node name="SniperRifle" type="Node3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager/WeaponContainer" node_paths=PackedStringArray("model", "attackPoint", "muzzleFlashSpawner")]
 transform = Transform3D(-1, 0, 2.5351817e-06, 0, 1, 0, -2.5351817e-06, 0, -1, 0.208089, -0.137525, -0.165069)
@@ -417,7 +416,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.296401e-06, 0.054981336, -0.4696825)
 
 [node name="MuzzlePointSniper" type="Marker3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager/WeaponContainer/SniperRifle/SniperRifleModel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.296401e-06, 0.057424277, -0.46927983)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13207726, 0.057424277, -0.6495426)
 
 [node name="ShootManager" type="Node3D" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager"]
 unique_name_in_owner = true
@@ -440,6 +439,9 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_tt46u")
 }
+
+[node name="MuzzleFlash" parent="CameraHolder/CameraRecoilHolder/Camera/WeaponManager" instance=ExtResource("20_vraf3")]
+unique_name_in_owner = true
 
 [node name="Marker3D" type="Marker3D" parent="CameraHolder/CameraRecoilHolder/Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
@@ -516,3 +518,8 @@ font_size = 10
 outline_size = 4
 
 [node name="PlayerUI" parent="." instance=ExtResource("21_4hhey")]
+
+[node name="JumpTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.4
+one_shot = true

@@ -42,7 +42,7 @@ func checkIfFloor():
 			transitioned.emit(self, "JumpState")
 		if cR.jumpBuffOn:
 			#apply jump buffering
-			cR.bufferedJump = true
+			#cR.bufferedJump = true
 			cR.jumpBuffOn = false
 			transitioned.emit(self, "JumpState")
 			

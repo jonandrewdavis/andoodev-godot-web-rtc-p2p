@@ -39,15 +39,15 @@ func inputManagement():
 		#check if can jump buffer
 		if cR.floorCheck.is_colliding() and cR.lastFramePosition.y > cR.position.y and cR.nbJumpsInAirAllowed <= 0: cR.jumpBuffOn = true
 		#check if can coyote jump
-		if cR.wasOnFloor and cR.coyoteJumpCooldown > 0.0 and cR.lastFramePosition.y > cR.position.y:
-			cR.coyoteJumpOn = true
-			transitioned.emit(self, "JumpState")
+		#if cR.wasOnFloor and cR.coyoteJumpCooldown > 0.0 and cR.lastFramePosition.y > cR.position.y:
+			#cR.coyoteJumpOn = true
+			#transitioned.emit(self, "JumpState")
 		transitioned.emit(self, "JumpState")
 		
 func checkIfFloor():
 	if cR.is_on_floor():
 		if cR.jumpBuffOn: 
-			cR.bufferedJump = true
+			#cR.bufferedJump = true
 			cR.jumpBuffOn = false
 			transitioned.emit(self, "JumpState")
 		else:

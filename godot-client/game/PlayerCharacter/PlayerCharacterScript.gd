@@ -60,16 +60,16 @@ var walkOrRun : String = "WalkState" #keep in memory if play char was walking or
 @export var jumpTimeToPeak : float
 @export var jumpTimeToFall : float
 @onready var jumpVelocity : float = (2.0 * jumpHeight) / jumpTimeToPeak
-@export var jumpCooldown : float
+@export var jumpCooldown : float = 5.0
 var jumpCooldownRef : float 
 @export var nbJumpsInAirAllowed : int 
 var nbJumpsInAirAllowedRef : int 
 var jumpBuffOn : bool = false
-var bufferedJump : bool = false
+#var bufferedJump : bool = false
 @export var coyoteJumpCooldown : float
 var coyoteJumpCooldownRef : float
 var coyoteJumpOn : bool = false
-@export_range(0.1, 1.0, 0.05) var inAirInputMultiplier: float = 1.0
+@export_range(0.01, 1.0, 0.01) var inAirInputMultiplier: float = 1.0
 
 @export_group("Gravity variables")
 @onready var jumpGravity : float = (-2.0 * jumpHeight) / (jumpTimeToPeak * jumpTimeToPeak)
@@ -102,6 +102,8 @@ func _ready():
 	if is_multiplayer_authority():
 		%HitboxHead.queue_free()
 		%Camera.current = true
+		%WeaponContainer.position.y = -0.012
+		%WeaponContainer.position.z = -0.038
 	else:
 		set_process(false)
 		set_physics_process(false)
@@ -111,8 +113,8 @@ func _ready():
 		add_to_group("Enemies")
 		$HitboxHead.add_to_group("EnemiesHead")
 		$HitboxHead.set_collision_layer_value(6, true) 
-		%WeaponContainer.set_scale(Vector3(1.2, 1.2, 1.2))
-		%WeaponContainer.position = Vector3(-0.15, 0.7, 0.0)		
+		#%WeaponContainer.set_scale(Vector3(1.2, 1.2, 1.2))
+		%WeaponManager.position = Vector3(-0.15, 0.55, 0.0)		
 
 	#set move variables, and value references
 	moveSpeed = walkSpeed

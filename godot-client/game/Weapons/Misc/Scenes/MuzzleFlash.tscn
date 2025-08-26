@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://ob7g0u3halqf"]
+
+[ext_resource type="Texture2D" uid="uid://r0wevf5qpoyn" path="res://game/assets/weapons/muzzle/muzzle1_transform2_6.png" id="1_art31"]
+[ext_resource type="Script" uid="uid://c27644nu1t63c" path="res://game/Weapons/Misc/Scenes/muzzle_flash.gd" id="1_vst3m"]
+[ext_resource type="ArrayMesh" uid="uid://b5gelr34317xj" path="res://game/assets/weapons/muzzle/muzzle1.obj" id="2_vst3m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_coj4w"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_art31")
+
+[sub_resource type="Curve" id="Curve_3a6xq"]
+_data = [Vector2(0.0010504201, 0.0056357384), 0.0, 2.727399, 0, 0, Vector2(0.98844534, 0.9944968), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_art31"]
+offsets = PackedFloat32Array(0, 0.6102088)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vst3m"]
+gradient = SubResource("Gradient_art31")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3a6xq"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("GradientTexture2D_vst3m")
+
+[sub_resource type="SphereMesh" id="SphereMesh_5h8rt"]
+material = SubResource("StandardMaterial3D_3a6xq")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="Curve" id="Curve_fjr12"]
+_data = [Vector2(0.018557422, 0.009075046), 0.0, 0.46251175, 0, 0, Vector2(0.98844534, 0.7416921), -0.053642362, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vst3m"]
+properties/0/path = NodePath("MuzzleFlash:emitting")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath("CPUParticles3D:emitting")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[node name="MuzzleFlash" type="Node3D"]
+transform = Transform3D(-0.8660254, 0.5, 8.742278e-08, 0.5, 0.8660254, 0, -7.5710346e-08, 4.371139e-08, -1, 0, 0, 0)
+script = ExtResource("1_vst3m")
+
+[node name="MuzzleFlash" type="CPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_coj4w")
+emitting = false
+amount = 1
+lifetime = 0.09999999999999999
+one_shot = true
+randomness = 1.0
+local_coords = true
+mesh = ExtResource("2_vst3m")
+gravity = Vector3(0, 0, 0)
+scale_amount_curve = SubResource("Curve_3a6xq")
+color = Color(1.353256, 1.0824775, 0.47312066, 1)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.06715672)
+emitting = false
+amount = 1
+lifetime = 0.09999999999999999
+one_shot = true
+randomness = 0.7
+local_coords = true
+mesh = SubResource("SphereMesh_5h8rt")
+gravity = Vector3(0, 0, 0)
+scale_amount_curve = SubResource("Curve_fjr12")
+color = Color(1.4905028, 1.1942025, 0, 1)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_vst3m")

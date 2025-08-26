@@ -80,9 +80,10 @@ func move(delta : float):
 	
 func jump(): 
 	#manage the jump behaviour, depending of the different variables and states the character is
-	
+	if not %JumpTimer.is_stopped():
+		return
+		
 	var canJump : bool = false #jump condition
-	
 	#in air jump
 	if !cR.is_on_floor():
 		if !cR.coyoteJumpOn and cR.nbJumpsInAirAllowed > 0:
@@ -99,11 +100,12 @@ func jump():
 	if cR.is_on_floor():
 		cR.jumpCooldown = cR.jumpCooldownRef
 		canJump = true 
-		
+		%JumpTimer.start()
+
 	#jump buffering
-	if cR.bufferedJump:
-		cR.bufferedJump = false
-		cR.nbJumpsInAirAllowed = cR.nbJumpsInAirAllowedRef
+	#if cR.bufferedJump:
+		#cR.bufferedJump = false
+		#cR.nbJumpsInAirAllowed = cR.nbJumpsInAirAllowedRef
 		
 	#apply jump
 	if canJump:

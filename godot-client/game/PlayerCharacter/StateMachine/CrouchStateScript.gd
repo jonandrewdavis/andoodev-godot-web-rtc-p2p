@@ -38,7 +38,7 @@ func checkIfFloor():
 			transitioned.emit(self, "InairState")
 	if cR.is_on_floor():
 		if cR.jumpBuffOn:
-			cR.bufferedJump = true
+			#cR.bufferedJump = true
 			cR.jumpBuffOn = false
 			transitioned.emit(self, "JumpState")
 			

@@ -169,6 +169,8 @@ func changeWeapon(nextWeapon : int):
 		return 
 	
 func displayMuzzleFlash():
+	%MuzzleFlash.global_position = cW.weSl.muzzleFlashSpawner.global_position
+	%MuzzleFlash.flash()
 	# NOTE: edited.
 	pass
 

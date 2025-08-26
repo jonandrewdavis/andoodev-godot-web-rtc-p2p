@@ -40,7 +40,7 @@ func checkIfFloor():
 		if cR.autoBunnyHop and cR.hitGroundCooldown > 0.0 and cR.inputDirection != Vector2.ZERO:
 			transitioned.emit(self, "JumpState")
 		if cR.jumpBuffOn:
-			cR.bufferedJump = true
+			#cR.bufferedJump = true
 			cR.jumpBuffOn = false
 			transitioned.emit(self, "JumpState")
 			
