@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://6eoclhsx0qae"]
+[gd_scene load_steps=7 format=3 uid="uid://6eoclhsx0qae"]
 
 [ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://lobby/theme/MinimalUI.tres" id="1_42wu0"]
+[ext_resource type="Script" uid="uid://5a0hl5vi0f3x" path="res://lobby/lobby_quick_connect.gd" id="2_5djwk"]
+[ext_resource type="StyleBox" uid="uid://dltee5tb5lpnf" path="res://lobby/theme/lobby_panel_container_styleboxflat.tres" id="3_fhgty"]
+[ext_resource type="PackedScene" uid="uid://cr0rjm7booup1" path="res://lobby/lobby_color_grid/lobby_color_grid.tscn" id="5_kaq8o"]
+[ext_resource type="PackedScene" uid="uid://b5bs8xlgxmi3q" path="res://lobby/lobby_chat.tscn" id="6_qwr24"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5djwk"]
 content_margin_left = 0.0
@@ -22,34 +26,175 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_42wu0")
+script = ExtResource("2_5djwk")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="ColumnQuickConnect" type="PanelContainer" parent="Margin/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5djwk")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Margin/HBoxContainer/ColumnQuickConnect"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="HBoxContainer2" type="VBoxContainer" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer"]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="InputUsername" type="LineEdit" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+placeholder_text = "Username"
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="InputCode" type="LineEdit" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 placeholder_text = "Lobby Code"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 
-[node name="LobbyQuickConnect" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ButtonQuickJoin" type="Button" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Connect"
+text = "Join"
 
-[node name="LobbyQuickHost" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ButtonQuickHost" type="Button" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Create"
+text = "Host"
+
+[node name="ColumnLobby" type="PanelContainer" parent="Margin/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_fhgty")
+
+[node name="LobbyVBox" type="VBoxContainer" parent="Margin/HBoxContainer/ColumnLobby"]
+layout_mode = 2
+
+[node name="LobbyTop" type="VBoxContainer" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="H" type="HBoxContainer" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop"]
+layout_mode = 2
+
+[node name="LabelLobbyTitle" type="Label" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/H"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "LOBBY_PLACEHOLDER"
+
+[node name="ButtonLobbyLeave" type="Button" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/H"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Leave Lobby"
+
+[node name="Vbox" type="VBoxContainer" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Code" type="Label" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Lobby Code:"
+
+[node name="LabelLobbyCode" type="Label" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox/HBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="LobbyCopyButton" type="Button" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox/HBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Copy"
+
+[node name="Label" type="Label" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 21
+text = "Players:"
+
+[node name="LobbyUserList" type="VBoxContainer" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="V" type="VBoxContainer" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox/HBoxContainer/V"]
+visible = false
+layout_mode = 2
+
+[node name="LobbyChat" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox/HBoxContainer/V" instance=ExtResource("6_qwr24")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop"]
+layout_mode = 2
+
+[node name="ColorGrid" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/HBoxContainer" instance=ExtResource("5_kaq8o")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonLobbyStart" type="Button" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Start Game"

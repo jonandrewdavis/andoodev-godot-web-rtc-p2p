@@ -164,6 +164,7 @@ func user_connect(username: String):
 	else:
 		current_username = username
 	set_process(true)
+	
 
 # TODO: This should wait for a response from the server to confirm validate
 # Currently it still works because the server will boot connections that don't validate.
@@ -216,6 +217,7 @@ func lobby_send_chat(message: String):
 func user_update_color(color: String):
 	_ws_send_action(ACTION.PlayerInfoUpdate, {"color": color })
 	
+
 #region WebRTCMultiplayerPeer
 
 func _network_create_multiplayer_peer(id: String):
