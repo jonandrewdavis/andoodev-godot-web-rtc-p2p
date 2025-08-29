@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://6eoclhsx0qae"]
+[gd_scene load_steps=9 format=3 uid="uid://6eoclhsx0qae"]
 
 [ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://lobby/theme/MinimalUI.tres" id="1_42wu0"]
 [ext_resource type="Script" uid="uid://5a0hl5vi0f3x" path="res://lobby/lobby_quick_connect.gd" id="2_5djwk"]
@@ -6,12 +6,27 @@
 [ext_resource type="PackedScene" uid="uid://cr0rjm7booup1" path="res://lobby/lobby_color_grid/lobby_color_grid.tscn" id="5_kaq8o"]
 [ext_resource type="PackedScene" uid="uid://b5bs8xlgxmi3q" path="res://lobby/lobby_chat.tscn" id="6_qwr24"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5djwk"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
+[sub_resource type="Gradient" id="Gradient_a04cy"]
+offsets = PackedFloat32Array(0.66504854, 0.7184466)
+colors = PackedColorArray(0.4, 0.4, 0.4, 1, 0.4, 0.4, 0.4, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3huwn"]
+gradient = SubResource("Gradient_a04cy")
+width = 25
+height = 25
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3huwn"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -45,10 +60,11 @@ layout_mode = 2
 
 [node name="ColumnQuickConnect" type="PanelContainer" parent="Margin/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(425, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5djwk")
+theme_override_styles/panel = ExtResource("3_fhgty")
 
 [node name="MarginContainer" type="MarginContainer" parent="Margin/HBoxContainer/ColumnQuickConnect"]
 custom_minimum_size = Vector2(300, 0)
@@ -61,6 +77,19 @@ theme_override_constants/margin_bottom = 12
 [node name="HBoxContainer2" type="VBoxContainer" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer"]
 layout_mode = 2
 
+[node name="HBoxConnect" type="HBoxContainer" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2/HBoxConnect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Connect"
+
+[node name="ConnectionLight" type="TextureRect" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2/HBoxConnect"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("GradientTexture2D_3huwn")
+
 [node name="InputUsername" type="LineEdit" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -71,12 +100,35 @@ placeholder_text = "Username"
 [node name="VBoxContainer" type="HBoxContainer" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2"]
 layout_mode = 2
 
-[node name="InputCode" type="LineEdit" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputCode" type="LineEdit" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 placeholder_text = "Lobby Code"
+
+[node name="ButtonPaste" type="Button" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2/VBoxContainer/HBoxContainer/InputCode"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -10.0
+offset_right = -4.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_3huwn")
+text = "Paste"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Margin/HBoxContainer/ColumnQuickConnect/MarginContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
@@ -120,7 +172,8 @@ text = "LOBBY_PLACEHOLDER"
 [node name="ButtonLobbyLeave" type="Button" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/H"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Leave Lobby"
+theme_override_font_sizes/font_size = 24
+text = "   Leave Lobby   "
 
 [node name="Vbox" type="VBoxContainer" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop"]
 layout_mode = 2
@@ -150,7 +203,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 
-[node name="LobbyCopyButton" type="Button" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox/HBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="ButtonCopy" type="Button" parent="Margin/HBoxContainer/ColumnLobby/LobbyVBox/LobbyTop/Vbox/HBoxContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
