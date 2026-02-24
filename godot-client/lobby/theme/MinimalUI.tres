@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=75 format=3 uid="uid://b3kq74llqlv3x"]
+[gd_resource type="Theme" format=3 uid="uid://b3kq74llqlv3x"]
 
 [ext_resource type="FontFile" uid="uid://bnudr3myap7vs" path="res://lobby/theme/Strait-Regular.ttf" id="1_o4n8r"]
 [ext_resource type="Texture2D" uid="uid://dem16guoa2beb" path="res://lobby/theme/icons.svg" id="2"]
@@ -238,6 +238,15 @@ border_width_bottom = 1
 border_color = Color(0.282353, 0.282353, 0.282353, 1)
 
 [sub_resource type="FontFile" id="21"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -309,6 +318,11 @@ cache/0/17/0/descent = 0.0
 cache/0/17/0/underline_position = 0.0
 cache/0/17/0/underline_thickness = 0.0
 cache/0/17/0/scale = 1.0
+cache/0/28/0/ascent = 0.0
+cache/0/28/0/descent = 0.0
+cache/0/28/0/underline_position = 0.0
+cache/0/28/0/underline_thickness = 0.0
+cache/0/28/0/scale = 1.0
 
 [sub_resource type="StyleBoxFlat" id="30"]
 bg_color = Color(0.282353, 0.282353, 0.282353, 1)

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponResourceNew" load_steps=6 format=3 uid="uid://j42d6dl8qkaj"]
+[gd_resource type="Resource" script_class="WeaponResourceNew" format=3 uid="uid://j42d6dl8qkaj"]
 
 [ext_resource type="AudioStream" uid="uid://bhigie4rovst1" path="res://game/assets/sound/9mm Pistol Rack Full.mp3" id="1_gd0kh"]
 [ext_resource type="Script" uid="uid://bnhfyt5sl8jcd" path="res://game/Weapons/Scripts/WeaponResourcesScript.gd" id="2_gd0kh"]

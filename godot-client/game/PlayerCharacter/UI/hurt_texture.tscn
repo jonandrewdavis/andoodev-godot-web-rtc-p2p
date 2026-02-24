@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cmffu3ggwm1dr"]
+
+[sub_resource type="Gradient" id="Gradient_yswgc"]
+offsets = PackedFloat32Array(0.5034188, 0.9008547)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0.23137257, 0.20784314, 0.34901962)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_721h2"]
+gradient = SubResource("Gradient_yswgc")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="HurtTexture" type="TextureRect" unique_id=86974853]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_721h2")

@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=4 format=3 uid="uid://ccvbsj3m2xgxj"]
+[gd_resource type="Environment" format=3 uid="uid://ccvbsj3m2xgxj"]
 
 [ext_resource type="Texture2D" uid="uid://8cisjmdyd3pq" path="res://game/assets/environment/pano/mountain_sky.jpg" id="1_ejpuu"]
 
