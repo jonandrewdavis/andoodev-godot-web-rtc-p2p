@@ -17,11 +17,13 @@ func _ready() -> void:
 	
 	%ButtonConnect.pressed.connect(func(): _new_user_connect())
 	%ButtonDisconnect.pressed.connect(func(): LobbySystem.user_disconnect())
-	%ButtonLobbyCreate.pressed.connect(func(): LobbySystem.lobby_create())
+	%ButtonLobbyCreate.pressed.connect(lobby_create)
+	%ButtonLobbyStart.pressed.connect(lobby_start)
+	%ButtonLobbyStart.disabled = true
+
 	%ButtonLobbyLeave.pressed.connect(func(): LobbySystem.lobby_leave())
-	%ButtonLobbyStart.pressed.connect(func(): LobbySystem.lobby_start_game())
 	%ButtonQuit.pressed.connect(func(): get_tree().quit())
-	
+
 	%InputUsername.max_length = 14
 	%InputUsername.text_changed.connect(func(new_text_value): username_value = new_text_value)
 	
@@ -48,6 +50,14 @@ func _ready() -> void:
 	
 	# Debug
 	LobbySystem.signal_packet_parsed.connect(_debug)
+
+func lobby_create():
+	LobbySystem.lobby_create() 
+	%ButtonLobbyStart.disabled = false
+
+func lobby_start():
+	LobbySystem.lobby_start_game()
+	%ButtonLobbyStart.disabled = true
 
 func _new_user_connect():
 	if not username_value:

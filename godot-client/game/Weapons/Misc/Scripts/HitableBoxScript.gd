@@ -1,5 +1,9 @@
 extends RigidBody3D
 
+
+func _enter_tree() -> void:
+	assume_owner(get_parent().get_multiplayer_authority())
+
 @rpc("any_peer", 'call_local', 'reliable')
 func assume_owner(id):
 	set_multiplayer_authority(id)

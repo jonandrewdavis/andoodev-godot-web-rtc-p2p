@@ -78,9 +78,12 @@ func getCameraPOV():
 	viewport = get_viewport().get_visible_rect().size
 			
 	#Start raycast in camera position, and launch it in camera direction 
+	@warning_ignore("integer_division")
 	var raycastStart = camera.project_ray_origin(viewport/2)
 	var raycastEnd
+	@warning_ignore("integer_division")
 	if cW.type == cW.types.HITSCAN: raycastEnd = raycastStart + camera.project_ray_normal(viewport/2) * cW.maxRange 
+	@warning_ignore("integer_division")
 	if cW.type == cW.types.PROJECTILE: raycastEnd = raycastStart + camera.project_ray_normal(viewport/2) * 280
 	
 	#Create intersection space to contain possible collisions 
